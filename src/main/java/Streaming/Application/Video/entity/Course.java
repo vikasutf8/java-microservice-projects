@@ -14,7 +14,7 @@ public class Course {
 
 
     @Id
-    private int courseId;
+    private String courseId;
     private String courseName;
     private String courseDescription;
     private String courseDuration;

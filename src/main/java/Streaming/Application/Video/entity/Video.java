@@ -22,7 +22,7 @@ import lombok.Setter;
 public class Video {
 
     @Id
-    private int videoId;
+    private String videoId;
     private String title;
     private String description;
     private String contentType;

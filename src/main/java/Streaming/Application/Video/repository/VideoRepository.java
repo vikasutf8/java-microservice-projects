@@ -1,21 +1,20 @@
 package Streaming.Application.Video.repository;
 
-import java.lang.foreign.Linker.Option;
+
 import java.util.Optional;
 
-import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
-import org.springframework.data.jpa.repository.config.JpaRepositoryConfigExtension;
+
+import org.springframework.stereotype.Repository;
+import Streaming.Application.Video.entity.Video;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-
-// is JpaRep
 @Repository
-public class VideoRepository extends JpaRepositoriesAutoConfiguration {
+public interface VideoRepository extends JpaRepository<Video, String> {
+    
+    // You can define custom query methods here
+    // Example: List<Video> findByTitle(String title);
+
     Optional<Video> findByTitle(String title);
-
-    // query method
-    //native Query createNativeQuery(String sql);
-    // criteria query api
-
-
 }
