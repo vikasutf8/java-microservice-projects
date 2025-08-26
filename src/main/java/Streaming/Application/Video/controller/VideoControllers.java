@@ -1,5 +1,6 @@
 package Streaming.Application.Video.controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.nio.file.Path;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.http.MediaType;
+import org.hibernate.boot.archive.internal.ByteArrayInputStreamAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.core.io.FileSystemResource;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import Streaming.Application.Video.AppConstants;
 import Streaming.Application.Video.entity.Video;
 import Streaming.Application.Video.playload.CustomMessage;
 import Streaming.Application.Video.service.VideoService;
@@ -88,7 +91,7 @@ public class VideoControllers {
     // streaming video by title
 
     @GetMapping("/stream/range/{videoId}")
-    public ResponseEntity<Resource> streamVideoByTitle(@PathVariable String videoId,
+    public ResponseEntity<?> streamVideoByTitle(@PathVariable String videoId,
             @RequestHeader(value = "Range", required = false) String rangeHeader) {
 
         Video video = videoService.get(videoId);
@@ -116,38 +119,58 @@ public class VideoControllers {
         rangeHeader.replace("bytes=", "");
         String[] ranges = rangeHeader.split("-");
         rangeStart = Long.parseLong(ranges[0]);
-        if (ranges.length > 1) {
-            rangeEnd = Long.parseLong(ranges[1]);
-        } else {
+
+        rangeEnd = rangeStart + AppConstants.CHUNK_SIZE - 1;
+        if (rangeEnd >= fileLength) {
             rangeEnd = fileLength - 1;
         }
 
-        if (rangeEnd > fileLength - 1) {
-            rangeEnd = fileLength - 1;
-        }
+        // if (ranges.length > 1) {
+        // rangeEnd = Long.parseLong(ranges[1]);
+        // } else {
+        // rangeEnd = fileLength - 1;
+        // }
+
+        // if (rangeEnd > fileLength - 1) {
+        // rangeEnd = fileLength - 1;
+        // }
+
         InputStream inputStream;
         try {
             inputStream = new FileInputStream(filePath.toFile());
             inputStream.skip(rangeStart);
 
-        } catch (Exception e) {
+            long contentLength = rangeEnd - rangeStart + 1;
+
+            byte[] buffer = new byte[(int) contentLength];
+            int read = inputStream.read(buffer, 0, (int) contentLength);
+            System.out.println("Read " + read + " bytes");
+
+
+            org.springframework.http.HttpHeaders httpHeaders = new org.springframework.http.HttpHeaders();
+            httpHeaders.add("Content-Range", "bytes " + rangeStart + "-" + rangeEnd + "/" + fileLength);
+            httpHeaders.add("Cache-Control", "no-cache, no-store, must-revalidate");
+            httpHeaders.add("Pragma", "no-cache");
+            httpHeaders.add("Expires", "0");
+            httpHeaders.add("X-Content-Type-Options", "nosniff");
+            httpHeaders.setContentLength(contentLength);
+
+            return ResponseEntity
+                    .status(HttpStatus.PARTIAL_CONTENT)
+                    .headers(httpHeaders)
+                    .contentType(MediaType.parseMediaType(contentType))
+                    .body(new ByteArrayInputStream(buffer));
+
+        } catch (Exception e) { 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .build();
         }
 
-        long contentLength = rangeEnd - rangeStart + 1;
-        org.springframework.http.HttpHeaders httpHeaders = new org.springframework.http.HttpHeaders();
-        httpHeaders.add("Content-Range", "bytes " + rangeStart + "-" + rangeEnd + "/" + fileLength);
-        httpHeaders.add("Cache-Control", "no-cache, no-store, must-revalidate");
-        httpHeaders.add("Pragma", "no-cache");
-        httpHeaders.add("Expires", "0");
-        httpHeaders.add("X-Content-Type-Options", "nosniff");
-        httpHeaders.setContentLength(contentLength);
-
-        return ResponseEntity
-                .status(HttpStatus.PARTIAL_CONTENT)
-                .headers(httpHeaders) 
-                .contentType(MediaType.parseMediaType(contentType))
-                .body(new InputStreamResource(inputStream));
     }
+
+    // bydefault browser works on o -full
+    // then skip a-full or b -full
+
+    // --> update this function :end range control
+
 }
