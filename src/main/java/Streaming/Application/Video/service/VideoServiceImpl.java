@@ -81,7 +81,7 @@ public class VideoServiceImpl  implements VideoService {
 
     @Override
     public Video get(String videoId) {
-       return null;
+        return videoRepository.findById(videoId).orElseThrow(() -> new RuntimeException("Video not found"));
     }
 
     @Override
@@ -91,8 +91,8 @@ public class VideoServiceImpl  implements VideoService {
 
     @Override
     public List<Video> getAll() {
-      
-        return null;
+
+        return videoRepository.findAll();
     }
 
 }
