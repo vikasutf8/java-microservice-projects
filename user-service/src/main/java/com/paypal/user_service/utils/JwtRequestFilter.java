@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -23,12 +22,16 @@ public class JwtRequestFilter extends OncePerRequestFilter{
     public JwtRequestFilter(JwtUtils jwtUtils) {
         this.jwtUtils = jwtUtils;
     }
-
+// HTTP request calling this filter working 
+    @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,FilterChain chain) throws  ServletException, IOException {
+
+        // Getting  token
        final String authorizationHeader = request.getHeader("Authorization");
         String username = null;
         String jwt = null;
 
+        //extracting user name ===email
         if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
             jwt = authorizationHeader.substring(7);
             try{
@@ -37,6 +40,8 @@ public class JwtRequestFilter extends OncePerRequestFilter{
                 //log
             }
         }
+
+        // multiple Checks 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             //username = null not authenticated
             if (jwtUtils.validateToken(jwt, username)) {
@@ -48,7 +53,7 @@ public class JwtRequestFilter extends OncePerRequestFilter{
 
         }
 
-
+// Authorization as Role based
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwt = authorizationHeader.substring(7);
             if (jwt == null || jwt.isBlank()) {

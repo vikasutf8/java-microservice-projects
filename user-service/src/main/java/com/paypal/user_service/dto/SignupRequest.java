@@ -1,6 +1,6 @@
 package com.paypal.user_service.dto;
 
-public class SignuoRequest {
+public class SignupRequest {
 
     private String name;
     private String email;
@@ -8,10 +8,10 @@ public class SignuoRequest {
 
     private String AdminKey;
 
-    public SignuoRequest() {        
+    public SignupRequest() {        
     }
 
-    public SignuoRequest(String name, String email, String password, String AdminKey) {
+    public SignupRequest(String name, String email, String password, String AdminKey) {
         this.name = name;
         this.email = email;
         this.password = password;

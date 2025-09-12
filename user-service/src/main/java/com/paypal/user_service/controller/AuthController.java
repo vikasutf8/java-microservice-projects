@@ -1,19 +1,20 @@
 package com.paypal.user_service.controller;
 
-import java.lang.foreign.Linker.Option;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.method.P;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.paypal.user_service.dto.JwtRequest;
 import com.paypal.user_service.dto.LoginRequest;
-import com.paypal.user_service.dto.SignuoRequest;
+import com.paypal.user_service.dto.SignupRequest;
 import com.paypal.user_service.entity.User;
 import com.paypal.user_service.repository.UserRepository;
 import com.paypal.user_service.utils.JwtUtils;
@@ -22,9 +23,10 @@ import com.paypal.user_service.utils.JwtUtils;
 @RequestMapping("api/v1/auth")
 public class AuthController {
 
-    private UserRepository userRepository;
+    private UserRepository userRepository;  //db operations
+    // jwt utils for generating token
     private JwtUtils jwtUtils;
-    private PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;  // password encoding
 
 
     public AuthController(UserRepository userRepository, JwtUtils jwtUtils, PasswordEncoder passwordEncoder) {
@@ -34,7 +36,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody SignuoRequest signupRequest) {
+    public ResponseEntity<?> signup(@RequestBody SignupRequest signupRequest) {
 
         Optional<User> isUserExist = userRepository.findByEmail(signupRequest.getEmail());
         if (isUserExist.isPresent()) {
@@ -65,10 +67,14 @@ public class AuthController {
             if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
                 return ResponseEntity.status(401).body("Invalid password");
             }
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("role", user.getRole());
 
-            Map<String, Object> claims = Map.of("role", user.getRole());
+            // generating token with claims
             String token = jwtUtils.generateToken(claims, user.getEmail());
-            return ResponseEntity.ok(token);
+
+            // System.out.println(token);
+            return ResponseEntity.ok(new JwtRequest(token));
 
     }
 
