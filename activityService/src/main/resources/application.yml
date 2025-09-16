@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: userService
+  data:
+    mongodb:
+      uri: mongodb+srv://e%2Dshop:e%2Dshop@microservice-freelence.f8tew3n.mongodb.net/AiFitness?retryWrites=true&w=majority
+
+
+server:
+  port: 8082
