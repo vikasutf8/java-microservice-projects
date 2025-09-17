@@ -82,3 +82,20 @@ response
     "createdAt": "2023-05-01T12:00:00",
     "updatedAt": "2023-05-01T12:00:00"
 }
+
+
+## eureka
+```
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+```
+
+```
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+```
+

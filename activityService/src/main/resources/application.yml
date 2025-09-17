@@ -1,6 +1,6 @@
 spring:
   application:
-    name: userService
+    name: activityService
   data:
     mongodb:
       uri: mongodb+srv://e%2Dshop:e%2Dshop@microservice-freelence.f8tew3n.mongodb.net/AiFitness?retryWrites=true&w=majority
@@ -8,3 +8,7 @@ spring:
 
 server:
   port: 8082
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
