@@ -12,9 +12,11 @@ import com.AiFitness.userService.models.User;
 import com.AiFitness.userService.repository.UserRepository;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class UserServices {
     @Autowired
     private final UserRepository userRepository;
@@ -87,6 +89,7 @@ public class UserServices {
 
 
     public Boolean existsByUserId(String userId) {
+        log.info("Checking if user with ID User Service", userId);
         return userRepository.existsById(userId);
     }
 
