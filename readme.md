@@ -99,3 +99,6 @@ eureka:
     fetch-registry: false
 ```
 
+## Inter-service communication :EUREKA:
+
+![alt text](image.png)

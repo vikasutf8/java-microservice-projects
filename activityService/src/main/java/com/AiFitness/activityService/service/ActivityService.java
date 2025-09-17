@@ -16,8 +16,14 @@ import lombok.RequiredArgsConstructor;
 public class ActivityService {
 
     private final ActivityRespository activityRespository;
+    private final UserValidationService userValidationService;
 
     public ActivityResponse trackActivity(ActivityRequest activityRequest) {
+
+        Boolean userExists = userValidationService.validateUser(activityRequest.getUserId());
+        if (!userExists) {
+            throw new RuntimeException("User not found");
+        }
         // Logic to track activity
        Activity activity = Activity.builder()
                 .userId(activityRequest.getUserId())
