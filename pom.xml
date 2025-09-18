@@ -13,6 +13,7 @@
    <modules>
        <module>user-service</module>
        <module>Payment_service</module>
+       <module>Notification-service</module>
 
 
        <!-- Add your other services here -->

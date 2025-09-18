@@ -1,0 +1,27 @@
+
+Server:
+  port: 8084
+
+spring:
+  application:
+    name: notification-service
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      group-id: notification-service-group
+      auto-offset-reset: earliest
+    template:
+      default-topic: payment-initiated
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password  
+  jpa:
+    hibernate: 
+      ddl-auto: update  
+    show-sql: true
+
+
