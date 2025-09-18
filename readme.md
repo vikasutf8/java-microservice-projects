@@ -157,7 +157,7 @@ response
     "createdAt": "2023-05-01T12:00:00",
     "updatedAt": "2023-05-01T12:00:00"
 } 
-  
+
 ---
 
 
@@ -191,3 +191,6 @@ kafka:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 ```
+
+
+![kafka.jpg](kafka.png)
