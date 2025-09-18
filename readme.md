@@ -102,3 +102,92 @@ eureka:
 ## Inter-service communication :EUREKA:
 
 ![alt text](image.png)
+
+
+## ai Service
+PORT : 8083
+- Get user all recommendations
+GET : http://localhost:8083/api/recommendations/user/123456
+
+response
+[
+    {
+        "id": "1",
+        "activityId": "1",
+        "userId": "123456",
+        "recommendation": "Run for 30 minutes",
+        "improvements": [
+            "Increase calories burned",
+            "Increase duration"
+        ],
+        "suggestions": [
+            "Increase calories burned",
+            "Increase duration"
+        ],
+        "safety": [
+            "Increase calories burned",
+            "Increase duration"
+        ],
+        "createdAt": "2023-05-01T12:00:00",
+        "updatedAt": "2023-05-01T12:00:00"
+    }
+]
+
+- Get activity recommendations
+GET : http://localhost:8083/api/recommendations/activity/1
+
+response
+{
+    "id": "1",
+    "activityId": "1",
+    "userId": "123456",
+    "recommendation": "Run for 30 minutes",
+    "improvements": [
+        "Increase calories burned",
+        "Increase duration"
+    ],
+    "suggestions": [
+        "Increase calories burned",
+        "Increase duration"
+    ],
+    "safety": [
+        "Increase calories burned",
+        "Increase duration"
+    ],
+    "createdAt": "2023-05-01T12:00:00",
+    "updatedAt": "2023-05-01T12:00:00"
+} 
+  
+---
+
+
+## Kafka on Docker
+PORT : 9092
+
+### Docker commands
+```
+docker run -d -p 9092:9092 apache/kafka:latest
+
+```
+```
+kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: activity-processing-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    properties:
+      spring.json.trusted.packages: "*"
+      spring.json.value.type.headers: false
+      spring.json.value.default.type: package com.AiFitness.aiService.model.Activity
+
+```
+
+```
+kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+```
