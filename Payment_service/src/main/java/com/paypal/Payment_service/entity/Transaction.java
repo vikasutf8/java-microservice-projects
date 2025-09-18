@@ -1,9 +1,9 @@
 package com.paypal.Payment_service.entity;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 
-import jakarta.annotation.Generated;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +13,11 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Positive;
 
+import lombok.Data;
+
+
 @Entity
+@Data
 @Table(name = "transaction")
 public class Transaction {
 

@@ -35,3 +35,7 @@ public class SecurityConfig {
 
 }
 
+// we disable CSRF because we are using REST APIs which are stateless and do not maintain any session
+// we permit all requests to /api/v1/transaction/** because these are the endpoints 
+
+
