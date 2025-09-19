@@ -3,7 +3,7 @@ spring:
     name: aiService
   data:
     mongodb:
-      uri: mongodb+srv://e%2Dshop:e%2Dshop@microservice-freelence.f8tew3n.mongodb.net/AiFitnessRecommedation?retryWrites=true&w=majority
+      uri: ${DB_URL}
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
@@ -29,3 +29,9 @@ eureka:
 kafka:
   topic:
     name: activity-events
+
+gemini:
+  api:
+    url: ${GEMINI_API_URL}
+    key: ${GEMINI_API_KEY}
+ 
