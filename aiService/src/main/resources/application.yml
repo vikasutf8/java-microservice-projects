@@ -3,7 +3,7 @@ spring:
     name: aiService
   data:
     mongodb:
-      uri: ${DB_URL}
+      uri: mongodb+srv://e%2Dshop:e%2Dshop@microservice-freelence.f8tew3n.mongodb.net/AiFitnessRecommedation?retryWrites=true&w=majority
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
@@ -32,6 +32,6 @@ kafka:
 
 gemini:
   api:
-    url: ${GEMINI_API_URL}
-    key: ${GEMINI_API_KEY}
+    url: "temp"
+    key: "temp"
  

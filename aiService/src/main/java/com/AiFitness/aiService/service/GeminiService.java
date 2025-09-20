@@ -8,18 +8,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @Data
-@RequiredArgsConstructor
 public class GeminiService {
 
     private final WebClient webClient;
 
-    @Value("${url}")
+    @Value("${gemini.api.url}")
     private String  geminiApiUrl ;
-    @Value("${key}")
+    @Value("${gemini.api.key}")
     private String geminiApiKey;
 
 
