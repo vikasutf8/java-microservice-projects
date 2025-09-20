@@ -195,3 +195,42 @@ kafka:
 
 
 ![kafka.jpg](kafka.png)
+
+
+## GEMINI API
+
+https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent
+headers
+Content-Type: application/json
+x-goog-api-key: YOUR_API_KEY
+
+{
+  "contents": [
+    {
+      "parts": [
+        {
+          "text": "Run for 30 minutes"
+        }
+      ]
+    }
+  ]
+}
+
+response
+{
+    "candidates": [
+        {
+            "content": {
+                "parts": [
+                    {
+                        "text": "AI learns from data to make predictions or decisions.\n" 
+                    }
+                ],
+                "role": "model"
+            },
+            "finishReason": "STOP",
+            "avgLogprobs": -0.067390631545673721
+        }
+    ],
+ ------..................
+}
