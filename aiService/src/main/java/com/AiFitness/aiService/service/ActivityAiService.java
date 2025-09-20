@@ -1,5 +1,6 @@
 package com.AiFitness.aiService.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.AiFitness.aiService.model.Activity;
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @Data
 public class ActivityAiService {
 
+    @Autowired
     private final GeminiService geminiService;
 
     public void generateRecommendations(Activity activity) {

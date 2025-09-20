@@ -11,6 +11,24 @@
 			"problemMatcher": [],
 			"label": "java (build): Build Workspace",
 			"detail": "$(tools) Build all the Java projects in workspace."
+		},
+		{
+			"type": "java (buildArtifact)",
+			"targetPath": "${workspaceFolder}/${workspaceFolderBasename}.jar",
+			"elements": [
+				"${compileOutput:activityService}",
+				"${dependencies:activityService}",
+				"${compileOutput:aiService}",
+				"${dependencies:aiService}",
+				"${compileOutput:eureka}",
+				"${dependencies:eureka}",
+				"${compileOutput:user-service}",
+				"${dependencies:user-service}",
+				"${compileOutput:userService}",
+				"${dependencies:userService}"
+			],
+			"problemMatcher": [],
+			"label": "java (buildArtifact): AI-Fitness-mircroservice"
 		}
 	]
 }
