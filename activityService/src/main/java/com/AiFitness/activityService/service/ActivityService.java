@@ -22,7 +22,7 @@ public class ActivityService {
     private final ObjectMapper objectMapper;
     private final ActivityRespository activityRespository;
     private final UserValidationService userValidationService;
-    private final KafkaTemplate<String, Activity> kafkaTemplate;
+    private final KafkaTemplate<String, String> kafkaTemplate;
 
     @Value("${kafka.topic.name}")
     private String topicName ;
@@ -44,11 +44,16 @@ public class ActivityService {
                 .build();
 
         Activity savedActivity = activityRespository.save(activity);
+        // print saved activity at console
+
+        
 
        try {
-        // String jsons = objectMapper.writeValueAsString(savedActivity);
-        kafkaTemplate.send(topicName, savedActivity.getUserId(), savedActivity);
-         log.info("Activity sent to Kafka topic: {}", topicName);
+        String jsons = objectMapper.writeValueAsString(savedActivity);
+
+        
+        kafkaTemplate.send(topicName, savedActivity.getUserId(), jsons);
+        log.info("Activity sent by userId {} ", savedActivity);
        } catch (Exception e) {
         e.printStackTrace();
        }
