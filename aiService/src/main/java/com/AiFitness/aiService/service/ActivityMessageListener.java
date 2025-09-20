@@ -27,10 +27,7 @@ public class ActivityMessageListener {
     @KafkaListener(topics = "${kafka.topic.name}" , groupId = "activity-processing-group")
     public void processActivity(String jsons) {
      try {
-      log.info("what is jsons {}", jsons);
       Activity activity = objectMapper.readValue(jsons, Activity.class);
-      
-    log.info(": {}", activity);
     activityAiService.generateRecommendations(activity);
      } catch (Exception e) {
         log.error("Error processing activity", e);

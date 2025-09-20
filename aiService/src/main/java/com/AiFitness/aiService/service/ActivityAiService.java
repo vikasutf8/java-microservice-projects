@@ -19,6 +19,7 @@ public class ActivityAiService {
     private final GeminiService geminiService;
 
     public void generateRecommendations(Activity activity) {
+        log.info("generateRecommendations for activity: {}", activity);
         String prompt = createPromptForActivity(activity);
         log.info("Prompt for activity: {}", geminiService.getRecommendations(prompt));
     }
