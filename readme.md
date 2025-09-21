@@ -1,21 +1,20 @@
-# AI-Fitness-Planner
-
-## HLD Diagram
+# AI-Fitness-Planner : Java Microservices Application
+## HLD Diagram :construction:
 ![HLD](image-2.png)
-
----
 ## userService
 PORT : 8081
 - Register user
-```POST : http://localhost:8081/api/users/register
+POST : http://localhost:8081/api/users/register
+```
 {
     "firstName": "Vikas",
     "lastName": "Arya",
     "email": "vikasarya@gmail.com",
     "password": "123456"
-}```
+}
 ```
-response
+Response :-
+```
 {
     "id": "1",
     "firstName": "Vikas",
@@ -24,12 +23,13 @@ response
     "password": "123456",
     "createdAt": "2023-05-01T12:00:00",
     "updatedAt": "2023-05-01T12:00:00"
-}```
+}
+```
 
 - Get user profile
 GET : http://localhost:8080/api/users/1
-
-```response
+Response:-
+```
 {
     "id": "1",
     "firstName": "Vikas",
@@ -38,12 +38,13 @@ GET : http://localhost:8080/api/users/1
     "password": null,
     "createdAt": "2023-05-01T12:00:00",
     "updatedAt": "2023-05-01T12:00:00"
-}```
+}
+```
 
 - Get all users
 GET : http://localhost:8080/api/users/allUser
-
-```response
+Response:-
+```
 [
     {
         "id": "1",
@@ -54,13 +55,15 @@ GET : http://localhost:8080/api/users/allUser
         "createdAt": "2023-05-01T12:00:00",
         "updatedAt": "2023-05-01T12:00:00"
     }
-]```
+]
+```
 
----
+
 ## activityService
 - Track activity
 POST : http://localhost:8082/api/activities
-```{
+```
+{
     "userId": "123456",
     "activityType": "RUNNING",
     "caloriesBurned": 250,
@@ -70,9 +73,10 @@ POST : http://localhost:8082/api/activities
         "distance": 5.2,
         "steps": 7000
     }
-}```
-
-```response
+}
+```
+Response:-
+```
 {
     "id": "1",
     "userId": "123456",
@@ -86,11 +90,10 @@ POST : http://localhost:8082/api/activities
     },
     "createdAt": "2023-05-01T12:00:00",
     "updatedAt": "2023-05-01T12:00:00"
-}```
+}
+```
 
----
-
-## eureka
+## Spring Eureka Cloud
 ```
 eureka:
   client:
@@ -109,14 +112,14 @@ eureka:
 
 ![alt text](image.png)
 
----
 ## ai Service
 PORT : 8083
 - Get user all recommendations
 GET : http://localhost:8083/api/recommendations/user/123456
 
 response
-```[
+```
+[
     {
         "id": "1",
         "activityId": "1",
@@ -137,12 +140,13 @@ response
         "createdAt": "2023-05-01T12:00:00",
         "updatedAt": "2023-05-01T12:00:00"
     }
-]```
+]
+```
 
 - Get activity recommendations
 GET : http://localhost:8083/api/recommendations/activity/1
 
-response
+Response:-
 ```{
     "id": "1",
     "activityId": "1",
@@ -162,14 +166,13 @@ response
     ],
     "createdAt": "2023-05-01T12:00:00",
     "updatedAt": "2023-05-01T12:00:00"
-} ```
-
----
+} 
+```
 
 ## Kafka on Docker
 PORT : 9092
 
-### Docker commands
+#### Docker commands
 ```
 docker run -d -p 9092:9092 apache/kafka:latest
 
@@ -202,9 +205,10 @@ kafka:
 
 ---
 ## GEMINI API
-
+POST
 https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent
-```headers
+```
+headers
 Content-Type: application/json
 x-goog-api-key: YOUR_API_KEY
 
@@ -241,14 +245,15 @@ response
 ```
 
 ![msDig](image1.png)
----
+
 ## Configuration Service
+
 PORT : 8888 
-with native - Config at classpath
----
+- with native - Config at classpath
+
 ## API Gateway
 PORT : 8080
-configure at config server
+- configure at config server
 
 ---
 ## OAuth2 Service(Open Autherization)
@@ -273,5 +278,4 @@ REFERENCES:~~~https://auth0.com/docs/get-started/authentication-and-authorizatio
  #### Client Credentials Flow :SERVER to SERVER
 
 
- ## KeyCloak : Open Sourece Identity and Access Management
-
+ ### KeyCloak : Open Sourece Identity and Access Management
