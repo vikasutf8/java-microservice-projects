@@ -234,3 +234,10 @@ response
     ],
  ------..................
 }
+
+
+![msDig](image1.png)
+
+## Configuration Service
+PORT : 8888 
+with native - Config at classpath

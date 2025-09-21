@@ -1,38 +1,5 @@
 spring:
   application:
     name: activityService
-  data:
-    mongodb:
-      uri: mongodb+srv://e%2Dshop:e%2Dshop@microservice-freelence.f8tew3n.mongodb.net/AiFitness?retryWrites=true&w=majority
-  kafka:
-    bootstrap-servers: localhost:9092
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-
-server:
-  port: 8082
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-
-# key value pair for kafka activty:<activity>
-# spring:
-#   kafka:
-#     bootstrap-servers: localhost:9092
-#     consumer:
-#       group-id: group1
-#       auto-offset-reset: earliest
-#       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-#       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-#     producer:
-#       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-#       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-#     properties:
-#       spring.json.trusted.packages: "*"
-#       spring.json.value.default.type: com.AIFitness.ActivityService.model.Activity
-
-kafka:
-  topic:
-    name: activity-events
+  config:
+    import: optional:configserver:http://localhost:8888
