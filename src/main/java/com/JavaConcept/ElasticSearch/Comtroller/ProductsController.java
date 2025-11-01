@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -30,19 +27,51 @@ public class ProductsController {
     public Iterable<Products> getProducts(){
         return  this.productService.getProducts();
     }
+    //replacement of fetch all products elastic search instead of product service
+    @GetMapping("searchProduct")
+    public List<Products> searchProducts() throws IOException {
+        SearchResponse<Products> searchResponse = this.elasticSearchService.matchAllProductService();
+        List<Hit<Products>> hitsofsearchResponse =searchResponse.hits().hits();
+        List<Products> productsList = hitsofsearchResponse.stream()
+                .map(Hit::source)
+                .filter(Objects::nonNull)
+//                .filter(p -> Objects.nonNull(p.getId()))
+                .collect(Collectors.toList());
+
+        System.out.println(productsList);
+        return productsList;
+    }
+
+    @GetMapping("searchProduct/{attributeName}")
+    public List<Products> matchAllProductServiceWithFieldName(@PathVariable String attributeName) throws IOException {
+        SearchResponse<Products> searchResponse = this.elasticSearchService.matchAllProductServiceWithFieldName(attributeName);
+        List<Hit<Products>> hitsofsearchResponse =searchResponse.hits().hits();
+        List<Products> productsList = hitsofsearchResponse.stream()
+                .map(Hit::source)
+                .filter(Objects::nonNull)
+//                .filter(p -> Objects.nonNull(p.getId()))
+                .collect(Collectors.toList());
+
+        System.out.println(productsList);
+        return productsList;
+    }
+
+
+
+
     @GetMapping("matchAll")
-    public SearchResponse<Map> searchProducts() throws IOException {
+    public SearchResponse<Map> searchMatchAll() throws IOException {
         SearchResponse<Map> searchResponse=  this.elasticSearchService.matchAllService();
-return searchResponse;
-//        return searchResponse.hits().hits().stream()
-//                .map(
-//                        hit->{
-//                            Map<String, Object> map =new HashMap<>();
-//                            map.put("_index", hit.index());
-//                            map.put("_id", hit.id());
-//                            return map;
-//                        }
-//                ) .collect(Collectors.toList());
+        return searchResponse;
+    //        return searchResponse.hits().hits().stream()
+    //                .map(
+    //                        hit->{
+    //                            Map<String, Object> map =new HashMap<>();
+    //                            map.put("_index", hit.index());
+    //                            map.put("_id", hit.id());
+    //                            return map;
+    //                        }
+    //                ) .collect(Collectors.toList());
     }
 
     @PostMapping("create")

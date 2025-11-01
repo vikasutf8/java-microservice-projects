@@ -1,6 +1,8 @@
 package com.JavaConcept.ElasticSearch.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.UniqueConstraint;
@@ -16,6 +18,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(indexName = "products")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Products {
 
     @Id

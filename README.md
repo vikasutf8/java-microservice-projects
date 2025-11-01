@@ -194,6 +194,9 @@ docker.elastic.co/elasticsearch/elasticsearch:8.13.4
    - Use @PathVariable for resource identification (/user/5) - findbyid
    - Use @RequestParam for filters or optional parameters (/user?active=true)  seach
 
+- In elastic search HIT - added addition attributed in oure entityu response so handle that..
+  - @JsonIgnoreProperties(ignoreUnknown = true)
+
 ---
 
 ### Query DSL(domain specific languanges)
@@ -203,3 +206,5 @@ docker.elastic.co/elasticsearch/elasticsearch:8.13.4
 
 - GET http://localhost:8080/api/v1/products/matchAll  
 - search resposne of elasticseach clientQuery: {"match_all":{}}
+- Get http://localhost:8080/api/v1/products/searchProduct
+- Get http://localhost:8080/api/v1/products/searchProduct/iphone
