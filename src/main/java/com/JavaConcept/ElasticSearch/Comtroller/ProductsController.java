@@ -1,10 +1,20 @@
 package com.JavaConcept.ElasticSearch.Comtroller;
 
 
+import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.search.Hit;
 import com.JavaConcept.ElasticSearch.Entity.Products;
+import com.JavaConcept.ElasticSearch.Service.ElasticSearchService;
 import com.JavaConcept.ElasticSearch.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/v1/products")
@@ -13,9 +23,26 @@ public class ProductsController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private ElasticSearchService elasticSearchService;
+
     @GetMapping("all")
     public Iterable<Products> getProducts(){
         return  this.productService.getProducts();
+    }
+    @GetMapping("matchAll")
+    public SearchResponse<Map> searchProducts() throws IOException {
+        SearchResponse<Map> searchResponse=  this.elasticSearchService.matchAllService();
+return searchResponse;
+//        return searchResponse.hits().hits().stream()
+//                .map(
+//                        hit->{
+//                            Map<String, Object> map =new HashMap<>();
+//                            map.put("_index", hit.index());
+//                            map.put("_id", hit.id());
+//                            return map;
+//                        }
+//                ) .collect(Collectors.toList());
     }
 
     @PostMapping("create")

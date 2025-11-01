@@ -196,3 +196,10 @@ docker.elastic.co/elasticsearch/elasticsearch:8.13.4
 
 ---
 
+### Query DSL(domain specific languanges)
+- MatchAllQuery →
+  - This is an Elasticsearch query that matches all documents in an index.
+  - Equivalent to SQL:SELECT * FROM products;
+
+- GET http://localhost:8080/api/v1/products/matchAll  
+- search resposne of elasticseach clientQuery: {"match_all":{}}
