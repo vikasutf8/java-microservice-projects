@@ -1,5 +1,7 @@
-# Elastic Search
+# Elastic Search & Kibana
 - It is seach engine like google from db
+- Kibana = The UI for Elasticsearch 
+  - It’s a web dashboard that connects to Elasticsearch and visualizes the data
 - how data store:
   - In format of document like format  similer like mongoDb
   - Data is serialized in JSON format -- NOSQL database like key-value
@@ -9,6 +11,9 @@
   - distrbuted
   - horizontal scale
   - restfull api centric
+  - Elasticsearch = The database & search engine 
+    - It stores your data (like documents, logs, products, users, etc.)
+    - It lets you search, filter, aggregate, and analyze that data very fast using REST APIs
 
 - Where we use ??
   - unstructured -semi-structured data
@@ -208,3 +213,24 @@ docker.elastic.co/elasticsearch/elasticsearch:8.13.4
 - search resposne of elasticseach clientQuery: {"match_all":{}}
 - Get http://localhost:8080/api/v1/products/searchProduct
 - Get http://localhost:8080/api/v1/products/searchProduct/iphone
+
+-  What is edge n-gram indexing?
+   - Edge n-grams are a special type of text analysis technique used in Elasticsearch to enable autocomplete or type-ahead suggestions as a user types.
+   - Create a edge-ngram filter and edge -ngram analyzer on the index_products]
+     • Do a mapping of analyzer on top of that field on which you want to create tokens or wants auto suggests [name]
+     • Put some documents in the index created [id, name, price, qty]
+     • Do a auto suggest search [partial name]
+---
+- kibana pull
+- docker pull docker.elastic.co/kibana/kibana:8.13.4
+- http://localhost:5601
+- kibana run
+```docker run -d \
+  --name kibana \
+  -p 5601:5601 \
+  -e ELASTICSEARCH_HOSTS=http://host.docker.internal:9200 \
+  docker.elastic.co/kibana/kibana:8.13.4
+```
+
+
+-  kibana and ngram form auto suggestion rest query of elastic search db
