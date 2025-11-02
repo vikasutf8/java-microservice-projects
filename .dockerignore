@@ -1,0 +1,33 @@
+# Maven / Gradle build directories
+target/
+build/
+
+# Git and IDE files
+.git/
+.gitignore
+.idea/
+.vscode/
+
+# OS junk files
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Node modules (if front-end or fullstack project)
+node_modules/
+npm-debug.log
+
+# Docker files themselves
+docker-compose.yml
+Dockerfile
+target/
+.git/
+.gitignore
+.idea/
+.vscode/
+*.log
+Dockerfile
+docker-compose.yml
