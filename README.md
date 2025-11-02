@@ -233,4 +233,14 @@ docker.elastic.co/elasticsearch/elasticsearch:8.13.4
 ```
 
 
--  kibana and ngram form auto suggestion rest query of elastic search db
+-  kibana and edge-ngram form auto suggestion rest query of elastic search db
+- Auto suggestion search product
+- GET http://localhost:8080/api/v1/products/autoSuggestSearch/pro
+```json
+[
+    "iPhone 16 pro",
+    "iPhone 15 Pro",
+    "iPhone 16 pro max"
+]
+```
+--NOT as such  extranal need of kibana \... just for know how it working with elasticsearch

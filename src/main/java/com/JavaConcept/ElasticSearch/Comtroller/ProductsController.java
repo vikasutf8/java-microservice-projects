@@ -56,9 +56,6 @@ public class ProductsController {
         return productsList;
     }
 
-
-
-
     @GetMapping("matchAll")
     public SearchResponse<Map> searchMatchAll() throws IOException {
         SearchResponse<Map> searchResponse=  this.elasticSearchService.matchAllService();
@@ -73,6 +70,29 @@ public class ProductsController {
     //                        }
     //                ) .collect(Collectors.toList());
     }
+
+
+
+    @GetMapping("autoSuggestSearch/{partialAttributeName}")
+    public List<String> autoSuggestSearchProduct(@PathVariable String partialAttributeName) throws IOException {
+        SearchResponse<Products> searchResponse = this.elasticSearchService.autoSuggestMatchProducts(partialAttributeName);
+
+        List<String> productsList = searchResponse.hits().hits().stream()
+                .map(Hit::source)                          // extract _source (Products)
+                .filter(Objects::nonNull)                   // skip nulls
+                .map(Products::getName)                     // extract product name
+                .filter(Objects::nonNull)                   // skip null names
+                .toList();                                  // collect into List<String>
+
+        System.out.println(productsList);
+        return productsList;
+    }
+
+
+
+
+
+
 
     @PostMapping("create")
     public Products createProduct(@RequestBody Products products){

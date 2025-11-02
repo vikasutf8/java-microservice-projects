@@ -30,6 +30,16 @@ public class ElasticSearchUtils {
         return new MatchQuery.Builder().field("name").query(attributeValue).build();
     }
 
+    // Returns a Supplier that provides a match_all query when called
+    public static Supplier<Query> autoSuggestSupplierField(String partialAttributeValue ) {
+        return () -> Query.of(q -> q.match(autoSuggestMatchQueryField(partialAttributeValue)));
+    }
+
+    // Builds and returns a MatchAllQuery object
+    public static MatchQuery autoSuggestMatchQueryField(String partialAttributeValue) {
+        return new MatchQuery.Builder().field("name").query(partialAttributeValue).analyzer("standard").build();
+    }
+
 
 }
 //matchAllQuery() → creates { "match_all": {} }

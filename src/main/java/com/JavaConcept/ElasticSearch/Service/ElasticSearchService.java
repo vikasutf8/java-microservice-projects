@@ -46,4 +46,15 @@ public class ElasticSearchService {
         return  searchResponse;
 
     }
+
+
+    public SearchResponse<Products> autoSuggestMatchProducts(String partialAttributeName) throws IOException {
+        Supplier<Query> supplier = ElasticSearchUtils.autoSuggestSupplierField(partialAttributeName);
+//indexs
+
+        SearchResponse<Products> searchResponse=elasticsearchClient.search(s->s.index("products").query(supplier.get()), Products.class);
+        System.out.println("search resposne of elasticseach client"+supplier.get());
+        return  searchResponse;
+
+    }
 }
