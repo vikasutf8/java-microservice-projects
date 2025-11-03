@@ -15,7 +15,6 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface PatientRepository extends JpaRepository<Patient,Long> {
@@ -64,4 +63,8 @@ List<CountBloodTypeResponseEnitity> countBloodType();
 
     @Query(value = "select * from patients_table", nativeQuery = true)
     Slice<Patient> findAllPatientSlice(Pageable pageable);
+
+//    @Query("select p from Patient p Left join Fetch p.appointments a left join fetch a.doctor") //how to avoid that fetch doctor is many to one -- eager change to lazy
+    @Query("select p from Patient p Left join Fetch p.appointments")
+    List<Patient> findAllPatientwithappointment();
 }

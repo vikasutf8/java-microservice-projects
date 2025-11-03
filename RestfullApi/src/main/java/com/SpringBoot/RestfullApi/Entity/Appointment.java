@@ -31,18 +31,22 @@ public class Appointment {
     @Enumerated(EnumType.STRING)
     private AppointmentStatus status;
 //many is this table -- one is other table
+//    cascasdimng -- on deleting appointment -- patient detlete --worng
+//    no cascading --aviod cascading many to one
     @ManyToOne()
     @JoinColumn(name = "appointment_patient_id",nullable = false)
     private Patient patient;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "appointed_docker_id",nullable = false)
     private Doctor doctor;
 
 
-
+    public static Object builder() {
+        return null;
+    }
 }
-
+// JPA DOMAIN
 //patient takes many appointment --but a single appointment is having a single patient many to one
 // how to choose owning side specially one to many or many one
 // which table doesn't meant of without other table iis owing side // dependent table is owming talbe

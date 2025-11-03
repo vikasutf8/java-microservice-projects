@@ -56,7 +56,9 @@ public class PatientTest {
 //
 //        List<Patient> patient4  = patientRepository.findAllPatient();
 //        System.out.println(patient4+"native quert ");
-//
+        List<Patient> patient4  = patientRepository.findAllPatientwithappointment();
+        System.out.println(patient4+"joins with N+1 reslove ");
+//findAllPatientwithappointment
 //        int updated = patientRepository.updateNameById(3L, "Updated Name");
 //        System.out.println("Rows updated: " + updated);
 //
