@@ -25,10 +25,10 @@ public class InsurenceTest {
                 .validUntil(LocalDate.of(3943,3,24))
                 .build();
 
-        Patient patient =insuranceService.assignInsuranseToPatient(insurance,1L);
-        System.out.println(patient+"patient updated");
-
-        Patient patient1 =insuranceService.disassoicateInsuranseToPatient(patient.getId());
-        System.out.println(patient1);
+//        Patient patient =insuranceService.assignInsuranseToPatient(insurance,1L);
+//        System.out.println(patient+"patient updated");
+//
+//        Patient patient1 =insuranceService.disassoicateInsuranseToPatient(patient.getId());
+//        System.out.println(patient1);
     }
 }

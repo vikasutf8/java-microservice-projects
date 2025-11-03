@@ -2,4 +2,19 @@
 # Annotations
 - @RestControllers
 - ResponseBody -- json format me respone send hoga
-- 
+### Spring Security can support the following right out of the b
+1. Username/password authentication (form login)
+2. JWT (JSON Web Token) authentication
+3. OAuth2 and Open Connect (OIDC) integration
+4. Social login (Google, GitHub, Facebook, etc.)
+5. LDAP authentication
+6. Remember-Me authentication
+7. Role-based access control (RAC)
+8. Fine-grained permission expressions using SpEL
+9. Concurrent session control (limit login sessions)
+10. Session timeout and invalidation
+11. Built-in CSRF token generation and validation
+12. Cross-Origin Resource Sharing (CORS) headers
+13. X-Frame-Options for clickjacking protection
+14. Custom authentication providers
+15. Custom filters and filter chain
