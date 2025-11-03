@@ -18,3 +18,10 @@
 13. X-Frame-Options for clickjacking protection
 14. Custom authentication providers
 15. Custom filters and filter chain
+### Authentication workflow with jwt
+16. ![Screenshot 2025-11-03 at 21.49.52.png](../../../../../../var/folders/zr/k2cbvfwj7dv7vwnjz2k_70p40000gn/T/TemporaryItems/NSIRD_screencaptureui_NDvYlz/Screenshot%202025-11-03%20at%2021.49.52.png)
+17. ![Screenshot 2025-11-03 at 21.49.08.png](../../../../../../var/folders/zr/k2cbvfwj7dv7vwnjz2k_70p40000gn/T/TemporaryItems/NSIRD_screencaptureui_T0ZUjX/Screenshot%202025-11-03%20at%2021.49.08.png)
+
+
+- filter - work before dispatcher servlet
+- interceptor - work before controller (request lock, response/request)
