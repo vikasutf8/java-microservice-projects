@@ -64,11 +64,11 @@ public class PatientTest {
 //        List<CountBloodTypeResponseEnitity> countbloodtype =patientRepository.countBloodType();
 //        System.out.println(countbloodtype);
 
-        Page<Patient> patientpage =patientRepository.findAllPatientPage(PageRequest.of(0,10, Sort.by("full_name").descending()));
-        System.out.println(patientpage+"patinet pageable");
-
-        Slice<Patient> patientslice =patientRepository.findAllPatientSlice(PageRequest.of(5,4, Sort.by("birth_date").descending()));
-        System.out.println(patientslice+"patient slice");
+//        Page<Patient> patientpage =patientRepository.findAllPatientPage(PageRequest.of(0,10, Sort.by("full_name").descending()));
+//        System.out.println(patientpage+"patinet pageable");
+//
+//        Slice<Patient> patientslice =patientRepository.findAllPatientSlice(PageRequest.of(5,4, Sort.by("birth_date").descending()));
+//        System.out.println(patientslice+"patient slice");
     }
 
     @Test

@@ -11,13 +11,14 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "patients_table",
 uniqueConstraints = {
-        @UniqueConstraint(name = "unique_patient_email" , columnNames = {"email"}),
+//        @UniqueConstraint(name = "unique_patient_email" , columnNames = {"email"}),
         @UniqueConstraint(name = "unique_patient_dob" , columnNames = {"birthDate"})
 },
 indexes = {
@@ -47,5 +48,17 @@ public class Patient {
 
     @Enumerated(EnumType.STRING)
     private BloodType bloodType;
+
+
+//    this is colume is joincolcum
+    @OneToOne()
+    @JoinColumn(name = "insurance_id" ,nullable = true)
+    private Insurance insurance;
+
+
+//    having appointment
+//    bidirectional -- JPA know --db not
+    @OneToMany(mappedBy = "patient")
+    private List<Appointment> appointments;
 
 }
