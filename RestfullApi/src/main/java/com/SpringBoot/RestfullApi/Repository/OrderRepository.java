@@ -23,4 +23,7 @@ public interface OrderRepository extends MongoRepository<Order,String > {
     List<Order> findPendingOrdersAbovePrice(OrderStatus status, Double price);
 
     List<Order> findByAddressCity(String city, Pageable pageable);
+
+    @Query(value = "{'address.city': ?0}",fields = "{'_id':1 ,'qty';1}")
+    List<Order>findByCity(String city);
 }

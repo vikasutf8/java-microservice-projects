@@ -11,10 +11,12 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.lang.annotation.Documented;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Data
@@ -43,4 +45,8 @@ public class Order {
     private LocalDateTime updatedAt;
 
     private Address address;
+
+// product already stored in db ... not cascading
+    @DBRef(lazy = true)
+    private List<Product> products;
 }

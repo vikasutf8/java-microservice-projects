@@ -4,7 +4,9 @@ package com.SpringBoot.RestfullApi;
 import com.SpringBoot.RestfullApi.Entity.Address;
 import com.SpringBoot.RestfullApi.Entity.Enum.OrderStatus;
 import com.SpringBoot.RestfullApi.Entity.Order;
+import com.SpringBoot.RestfullApi.Entity.Product;
 import com.SpringBoot.RestfullApi.Repository.OrderRepository;
+import com.SpringBoot.RestfullApi.Repository.ProductRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,10 +24,34 @@ public class OrderTest {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @Test
     public void TestCreateOrder(){
 //embedding -- de-normalization
         //referencing --normalization
+        List<String> tags = Arrays.asList("apple", "electronics", "premium");
+
+        Product Iphone = Product.builder()
+                .name("iPhone 16 Pro")
+                .category("Smartphones")
+                .price(1299.99)
+                .tags(tags)
+                .stock(25)
+                .build();
+
+        Product earpad = Product.builder()
+                .name("Airpod 3 pro")
+                .category("Airpiece")
+                .price(1299.99)
+                .tags(tags)
+                .stock(25)
+                .build();
+
+        List<Product> savedProducts = productRepository.saveAll(List.of(Iphone, earpad));
+
+
         Address address = Address.builder()
                 .street("123 MG Road")
                 .city("Bangalore")
@@ -37,6 +64,8 @@ public class OrderTest {
                 .netPrice(999.99)
                 .status(OrderStatus.PENDING)
                 .address(address)
+//                .products(List.of(Iphone,earpad))
+                .products(savedProducts)
                 .build();
 
         System.out.println(orderRepository.save(order));
