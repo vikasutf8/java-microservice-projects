@@ -1,9 +1,14 @@
 package com.SpringBoot.RestfullApi.Service.Implementation;
 
 import com.SpringBoot.RestfullApi.Dto.Enum.AuthProviderType;
+import com.SpringBoot.RestfullApi.Dto.SignUpReqeustDto;
+import com.SpringBoot.RestfullApi.Dto.SignupResponseDto;
 import com.SpringBoot.RestfullApi.Dto.UserRequestDto;
 import com.SpringBoot.RestfullApi.Dto.UserResponseDto;
+import com.SpringBoot.RestfullApi.Entity.Enum.UserRoleType;
+import com.SpringBoot.RestfullApi.Entity.Patient;
 import com.SpringBoot.RestfullApi.Entity.User;
+import com.SpringBoot.RestfullApi.Repository.PatientRepository;
 import com.SpringBoot.RestfullApi.Repository.UserRepository;
 import com.SpringBoot.RestfullApi.Security.JwtUtil;
 import com.SpringBoot.RestfullApi.Security.OAuthUtil;
@@ -15,7 +20,11 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+
+import java.util.Set;
 
 public class UserServiceImpl implements UserService {
 
@@ -30,6 +39,13 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PatientRepository patientRepository;
+
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 
     @Override
     public UserResponseDto createUser(UserRequestDto userRequestDto) {
@@ -46,14 +62,41 @@ public class UserServiceImpl implements UserService {
         return new UserResponseDto(token, user.getId());
     }
 
-    public User signUpInternal(User userRequestDto){
-        User user = userRepository.findByUsername(userRequestDto.getUsername());
+    public User signUpInternal(SignUpReqeustDto signupRequestDto, AuthProviderType authProviderType, String providerId) {
+        User user = userRepository.findByUsername(signupRequestDto.getUsername());
+        if (user != null)
+            throw new IllegalArgumentException("User already exists");
 
-        return userRepository.save(User.builder()
-                .username(userRequestDto.getUsername())
-                .password(userRequestDto.getPassword())
-                .build());
+        user = User.builder()
+                .username(signupRequestDto.getUsername())
+                .providerId(providerId)
+                .providerType(authProviderType)
+//                .roles(Set.of(UserRoleType.PATIENT)) // bydefual all  entry are patient
+                .roles(signupRequestDto.getUserRole())
+                .build();
+
+        if (authProviderType == AuthProviderType.EMAIL) {
+            user.setPassword(passwordEncoder().encode(signupRequestDto.getPassword()));
+        }
+
+        user =userRepository.save(user);
+
+        Patient patient =Patient.builder()
+                .name(signupRequestDto.getUsername())
+                .email(signupRequestDto.getName())
+                .user(user)
+                .build();
+        patientRepository.save(patient);
+
+        return user;
     }
+
+    public SignupResponseDto signup(SignUpReqeustDto signupRequestDto) {
+        User user = signUpInternal(signupRequestDto, AuthProviderType.EMAIL, null);
+        return new SignupResponseDto(user.getId(), user.getUsername());
+    }
+
+
 
     @Override
     @Transactional
@@ -61,7 +104,7 @@ public class UserServiceImpl implements UserService {
 //        provider type and provider id
         AuthProviderType providerType = oAuthUtil.getProviderTypeFromRegistrationId(registrationId);
         String providerId = oAuthUtil.determineProviderTypeFormOAuth2User(oAuth2User,registrationId);
-
+        String name =oAuth2User.getAttribute("name");
 
 //        save it info with user
 
@@ -73,7 +116,7 @@ public class UserServiceImpl implements UserService {
         if(user ==null || emailUser ==null){
 //            signup flows:
             String username =oAuthUtil.determineUsernameFromOAuth2User(oAuth2User,registrationId,providerId);
-//            user = signUpInternal(new UserRequestDto(username, null))
+          user =signUpInternal(new SignUpReqeustDto(username,null,name,Set.of(UserRoleType.PATIENT)),providerType,providerId);
         }
         else if (user !=null){
             //if user having acocunt directly login

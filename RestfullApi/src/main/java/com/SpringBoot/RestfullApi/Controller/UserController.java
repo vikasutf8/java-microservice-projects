@@ -1,5 +1,7 @@
 package com.SpringBoot.RestfullApi.Controller;
 
+import com.SpringBoot.RestfullApi.Dto.SignUpReqeustDto;
+import com.SpringBoot.RestfullApi.Dto.SignupResponseDto;
 import com.SpringBoot.RestfullApi.Dto.UserRequestDto;
 import com.SpringBoot.RestfullApi.Dto.UserResponseDto;
 import com.SpringBoot.RestfullApi.Service.UserService;
@@ -20,5 +22,10 @@ public class UserController {
     @PostMapping("login")
     public ResponseEntity<UserResponseDto> createUser(@RequestBody UserRequestDto userRequestDto){
         return ResponseEntity.ok(userService.createUser(userRequestDto));
+    }
+
+    @PostMapping("signUp")
+    public ResponseEntity<SignupResponseDto> signUpUser(@RequestBody SignUpReqeustDto signUpReqeustDto){
+        return ResponseEntity.ok(userService.signup(signUpReqeustDto));
     }
 }

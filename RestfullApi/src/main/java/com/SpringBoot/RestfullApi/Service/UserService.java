@@ -1,5 +1,7 @@
 package com.SpringBoot.RestfullApi.Service;
 
+import com.SpringBoot.RestfullApi.Dto.SignUpReqeustDto;
+import com.SpringBoot.RestfullApi.Dto.SignupResponseDto;
 import com.SpringBoot.RestfullApi.Dto.UserRequestDto;
 import com.SpringBoot.RestfullApi.Dto.UserResponseDto;
 import org.springframework.http.ResponseEntity;
@@ -12,4 +14,7 @@ public interface UserService {
     UserResponseDto createUser(UserRequestDto userRequestDto);
 
     ResponseEntity<UserResponseDto> handleOauth2LoginRequest(OAuth2User oAuth2User, String registrationId);
+
+
+    SignupResponseDto signup(SignUpReqeustDto signUpReqeustDto);
 }

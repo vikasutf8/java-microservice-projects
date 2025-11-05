@@ -6,6 +6,8 @@ public enum AuthProviderType {
         GOOGLE,      // OAuth2 Google Login
         GITHUB,      // OAuth2 GitHub Login
         FACEBOOK,    // OAuth2 Facebook Login
-        LINKEDIN     // Optional additional provider
+        LINKEDIN ,
+    EMAIL,
+
 
 }

@@ -4,9 +4,7 @@ package com.SpringBoot.RestfullApi.Entity;
 import com.SpringBoot.RestfullApi.Entity.Enum.BloodType;
 import com.SpringBoot.RestfullApi.Entity.Enum.GenderType;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
@@ -25,6 +23,9 @@ indexes = {
         @Index(name = "idx_patient_dob",columnList = "birthDate")
 })
 @ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +37,7 @@ public class Patient {
     @ToString.Exclude
     private LocalDate birthDate;
 
+    @Column(nullable = false)
     private String email;
 
     // @Enumerated(EnumType.STRING) ensures the enum name (e.g., "MALE") is stored in the database instead of its numeric index (which is error-prone).
@@ -74,6 +76,10 @@ public class Patient {
 
 //    solution 1 -- donot populate lazy  and dto tostring.exclude
 //    sotultuon 2 - custom query -- not findall create  a single query that fetch all recored
+
+    @OneToOne()
+    @MapsId()  // mapoing of user id == patient id  same
+    private User user;
 
 }
 

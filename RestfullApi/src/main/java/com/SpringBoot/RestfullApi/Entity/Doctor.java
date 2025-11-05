@@ -44,4 +44,9 @@ public class Doctor {
     @ManyToMany(mappedBy = "doctors")
     private Set<Department> departments =new HashSet<>();
 
+
+    @OneToOne()
+    @MapsId()  // mapoing of user id == docker id  same
+    private User user;
+
 }
