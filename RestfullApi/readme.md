@@ -37,3 +37,9 @@ docker run -d \
 mongo:latest
 docker exec -it mongodb mongosh -u admin -p admin123 --authenticationDatabase admin
 ```
+
+
+---
+- Mapping -- haven't fk  concept
+- embedding
+- referencing

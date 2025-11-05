@@ -1,6 +1,7 @@
 package com.SpringBoot.RestfullApi;
 
 
+import com.SpringBoot.RestfullApi.Entity.Address;
 import com.SpringBoot.RestfullApi.Entity.Enum.OrderStatus;
 import com.SpringBoot.RestfullApi.Entity.Order;
 import com.SpringBoot.RestfullApi.Repository.OrderRepository;
@@ -22,10 +23,20 @@ public class OrderTest {
 
     @Test
     public void TestCreateOrder(){
+//embedding -- de-normalization
+        //referencing --normalization
+        Address address = Address.builder()
+                .street("123 MG Road")
+                .city("Bangalore")
+                .state("Karnataka")
+                .postalCode("560001")
+                .country("India")
+                .build();
         Order order = Order.builder()
                 .qty(5)
                 .netPrice(999.99)
                 .status(OrderStatus.PENDING)
+                .address(address)
                 .build();
 
         System.out.println(orderRepository.save(order));
@@ -37,22 +48,28 @@ public class OrderTest {
 //        System.out.println("✅ Found Orders: " + result.size());
 //        result.forEach(System.out::println);
 
-        String orderIds = result.stream()
-                .map(Order::getId)
-                .collect(Collectors.joining(", "));
+//        String orderIds = result.stream()
+//                .map(Order::getId)
+//                .collect(Collectors.joining(", "));
+//
+//        System.out.println("✅ Found Orders with IDs: " + orderIds);
+//
+//        List<Order> result1 = orderRepository.findByStatusAndQtyGreaterThanOrderByCreatedAtDesc(OrderStatus.PENDING, 6);
+//        String orderIds1 = result1.stream()
+//                .map(Order::getId)
+//                .collect(Collectors.joining(", "));
+//
+//        System.out.println("✅ Found Orders with IDs: " + orderIds1);
+//        List<Order> result12 = orderRepository.findPendingOrdersAbovePrice(OrderStatus.PENDING, 500.00);
+//
+//        Pageable pageable = PageRequest.of(2,5, Sort.by(Sort.Direction.DESC, "netPrice"));
+//        List<Order> listALlOrder =orderRepository.findAll(pageable).toList();
 
-        System.out.println("✅ Found Orders with IDs: " + orderIds);
+        Pageable pageable = PageRequest.of(2, 5, Sort.by(Sort.Direction.DESC, "id"));
 
-        List<Order> result1 = orderRepository.findByStatusAndQtyGreaterThanOrderByCreatedAtDesc(OrderStatus.PENDING, 6);
-        String orderIds1 = result1.stream()
-                .map(Order::getId)
-                .collect(Collectors.joining(", "));
+        List<Order> listAllOrders = orderRepository.findByAddressCity("Delhi", pageable);
 
-        System.out.println("✅ Found Orders with IDs: " + orderIds1);
-        List<Order> result12 = orderRepository.findPendingOrdersAbovePrice(OrderStatus.PENDING, 500.00);
-
-        Pageable pageable = PageRequest.of(2,5, Sort.by(Sort.Direction.DESC, "netPrice"));
-        List<Order> listALlOrder =orderRepository.findAll(pageable).toList();
+        listAllOrders.forEach(System.out::println);
     }
 
     @Test

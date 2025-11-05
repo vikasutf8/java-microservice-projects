@@ -2,6 +2,8 @@ package com.SpringBoot.RestfullApi.Repository;
 
 import com.SpringBoot.RestfullApi.Entity.Enum.OrderStatus;
 import com.SpringBoot.RestfullApi.Entity.Order;
+import org.aspectj.weaver.ast.Or;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
@@ -19,4 +21,6 @@ public interface OrderRepository extends MongoRepository<Order,String > {
 
     @Query("{ 'status': ?0, 'netPrice': { $gte: ?1 } }")
     List<Order> findPendingOrdersAbovePrice(OrderStatus status, Double price);
+
+    List<Order> findByAddressCity(String city, Pageable pageable);
 }

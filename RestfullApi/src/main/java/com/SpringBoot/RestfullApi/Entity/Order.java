@@ -23,6 +23,7 @@ import java.time.LocalDateTime;
 @Builder
 @Document(collation = "orders")
 @CompoundIndex(name = "idx_qty_status" ,def = "{'qty':-1, 'status':1}") // -1 is oreder of asc or 1 is descending
+@CompoundIndex(name = "idx_address_city",def = "{'address.city': 1}")
 public class Order {
 
     @Id
@@ -40,4 +41,6 @@ public class Order {
 
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
+    private Address address;
 }
