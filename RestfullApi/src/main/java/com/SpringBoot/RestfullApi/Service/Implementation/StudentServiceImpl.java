@@ -7,6 +7,11 @@ import com.SpringBoot.RestfullApi.Repository.StudentRepository;
 import com.SpringBoot.RestfullApi.Service.StudentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,21 +26,62 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
+    private CacheManager cacheManager;
+
+
+    public static final String CACHE_ALL = "_cache_all_student";
+    public static final String CACHE_ID = "_cache_student_by_id";
+    public static final String CACHE_EMAIL = "_cache_student_by_email";
+    public static final String CACHE_NAME_EMAIL = "_cache_student_by_name_email";
+
     private StudentDto convertToDTO(Student student) {
         return modelMapper.map(student, StudentDto.class);
     }
 
     @Override
+    @Cacheable(cacheNames = CACHE_ALL ,key = "'all'")
     public List<StudentDto> getAllStudent() {
         List<Student>  students = studentRepository.findAll();
 
-        return  students
-                .stream()
-                .map(s->convertToDTO(s))
+        List<StudentDto> dtos = students.stream()
+                .map(this::convertToDTO)
                 .toList();
+
+        //  caches of them
+//1. putitng  cacheName init
+        var cachedId =cacheManager.getCache(CACHE_ID);
+        var cachedEmail = cacheManager.getCache(CACHE_EMAIL);
+        var cachedNameEmail =cacheManager.getCache(CACHE_NAME_EMAIL);
+//her put key in it
+        for (StudentDto dto : dtos) {
+            cachedId.put(dto.getId(), dto);
+            cachedEmail.put(dto.getEmail(), dto);
+            cachedNameEmail.put(dto.getName() + "_" + dto.getEmail(), dto);
+        }
+
+
+        return  dtos;
     }
 
+
+    //When a new student is created → remove the “all students” cache data.
     @Override
+//    @CacheEvict(cacheNames = "_cache_all_student", key = "'all'") // this is single cacghe remove ...but havign mutliple
+    @Caching(
+            evict = {
+                    @CacheEvict(cacheNames = CACHE_ALL, key = "'all'"),
+//                    @CacheEvict(cacheNames = CACHE_ID, allEntries = true),
+//                    @CacheEvict(cacheNames = CACHE_EMAIL, allEntries = true),
+//                    @CacheEvict(cacheNames = CACHE_NAME_EMAIL, allEntries = true)
+            },
+            put = {
+                    @CachePut(cacheNames = CACHE_ID, key = "#result.id"),
+                    @CachePut(cacheNames = CACHE_EMAIL, key = "#result.email"),
+                    @CachePut(cacheNames = CACHE_NAME_EMAIL, key = "#result.name + '_' + #result.email")
+            }
+    )
+
     public StudentDto createStudent(CreateStudentRequestDto createStudentRequestDto) {
         Student newStudent =modelMapper.map(createStudentRequestDto, Student.class); //java class
 //        createStudentRequestDto object ==> student entity object(dbStudnet)
@@ -47,6 +93,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Cacheable(cacheNames = "_cache_fetch_student_id", key = "'#studentId'")
     public StudentDto getStudentById(Long studentId) {
         Student student =this.studentRepository.findById(studentId).orElseThrow(()-> new IllegalArgumentException("Student with this id not exist"));
 
@@ -56,7 +103,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void deleteStudentById(Long studentId) {
          if(!studentRepository.existsById(studentId)){
-             throw new IllegalArgumentException("studnet doesn't exist of this +id"+studentId);
+             throw new IllegalArgumentException("student doesn't exist of this +id"+studentId);
          }
          this.studentRepository.deleteById(studentId);
     }

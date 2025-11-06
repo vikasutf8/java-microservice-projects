@@ -43,3 +43,6 @@ docker exec -it mongodb mongosh -u admin -p admin123 --authenticationDatabase ad
 - Mapping -- haven't fk  concept
 - embedding
 - referencing
+
+---
+- caching  allready in springboot
