@@ -130,3 +130,11 @@ Log every write operation
 Sync to disk on every write (highest durability)
 
 Produces file: appendonly.aof
+
+
+---
+- Redis PubSub ==> producer -- config(Listiner) -- consumer
+  -  star pattern "Live*" 
+  - PSUBSCRIBE
+  - Publish
+  - ?? at pattern way mutlipe producer at t0 hit so single consumer so which pattern it listen
