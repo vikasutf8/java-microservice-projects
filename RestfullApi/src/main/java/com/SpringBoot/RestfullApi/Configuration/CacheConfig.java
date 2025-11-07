@@ -7,11 +7,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 import java.time.Duration;
 
 @Configuration
 @EnableCaching
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 30)
 public class CacheConfig {
 
     public RedisCacheManager cacheManager(RedisConnectionFactory connectionFactory) {

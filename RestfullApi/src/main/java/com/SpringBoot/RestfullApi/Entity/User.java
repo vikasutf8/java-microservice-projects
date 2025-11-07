@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 @Table(name = "users")
-public class User  implements UserDetails {
+public class User  implements UserDetails , Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
@@ -43,6 +44,9 @@ public class User  implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
+    }
+
+    public User orElseThrow(Object userNotFound) {
     }
 }
 

@@ -82,4 +82,51 @@ docker run -d \
 - Implment TTL
 - configuration management 
 
-- 
+- Session managment/ session persistance in-memory or redis
+- At multiple ms(restart loss data) having a centralizad persistance database- redis that store session and avoid loss of session and cookies
+- ?? redis self down or crash as similiar like redis on restart -- should session be persistence/storaged
+  - RDB --> snapshotting , peeroidically save dataset into dump.rdb
+  - AOF --> Append only file , logs when wirte any file
+  - best --> RDB+ AOF
+  - set TTL for seesion of inactive session 
+- Debug
+  - using by HttpSessions - get by defualt always create as session of correct or empty details
+  - so use get HttpServeletRequest ti getSetion and setits false , for not null ways
+```redis:
+image: redis:7
+container_name: redis_session
+command: [
+"redis-server",
+"--appendonly", "yes",
+"--appendfsync", "always",
+"--save", "60", "1000"
+]
+ports:
+- "6379:6379"
+volumes:
+- redis_data:/data
+```
+
+```
+command: [
+"redis-server",
+"--appendonly", "yes",
+"--appendfsync", "always",  // used for AOP 
+"--save", "60", "1000"  // used for RDS  
+]
+```
+- Meaning:"--save", "60", "1000"
+
+Every 60 seconds:-
+If at least 1000 keys changed
+→ Redis writes dump.rdb snapshot to disk.
+
+ -> Snapshot = full dataset snapshot.
+
+- Meaning:
+
+Log every write operation
+
+Sync to disk on every write (highest durability)
+
+Produces file: appendonly.aof

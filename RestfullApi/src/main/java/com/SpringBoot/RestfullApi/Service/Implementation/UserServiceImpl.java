@@ -13,6 +13,9 @@ import com.SpringBoot.RestfullApi.Repository.UserRepository;
 import com.SpringBoot.RestfullApi.Security.JwtUtil;
 import com.SpringBoot.RestfullApi.Security.OAuthUtil;
 import com.SpringBoot.RestfullApi.Service.UserService;
+import io.jsonwebtoken.io.IOException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -48,7 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDto createUser(UserRequestDto userRequestDto) {
+    public UserResponseDto createUser(UserRequestDto userRequestDto, HttpSession session) {
 //        here to validate user -- authenticate manager
 //what its  internal; working -- as taking
         Authentication authentication = authenticationManager.authenticate(
@@ -60,6 +63,12 @@ public class UserServiceImpl implements UserService {
 
         String token=jwtUtil.generateAccessToken(user);
         return new UserResponseDto(token, user.getId());
+
+
+//         seesion
+
+
+
     }
 
     public User signUpInternal(SignUpReqeustDto signupRequestDto, AuthProviderType authProviderType, String providerId) {
@@ -95,8 +104,6 @@ public class UserServiceImpl implements UserService {
         User user = signUpInternal(signupRequestDto, AuthProviderType.EMAIL, null);
         return new SignupResponseDto(user.getId(), user.getUsername());
     }
-
-
 
     @Override
     @Transactional
@@ -136,4 +143,39 @@ public class UserServiceImpl implements UserService {
         return  ResponseEntity.ok(userResponseDto);
         //else singup then login
     }
+
+
+
+    public void login(String email, String password, HttpSession session) throws IOException {
+        // find user ignoring case
+        User user = userRepository.findByEmailIgnoreCase(email);
+
+        // validate password (replace with hashed comparison in real apps)
+        if (!user.getPassword().equals(password)) {
+            throw new RuntimeException("Invalid password");
+        }
+
+        // store in session
+        session.setAttribute("loggedUser", user);
+
+        // OR store only id / email
+        session.setAttribute("userId", user.getId());
+        session.setAttribute("email", user.getEmail());
+    }
+
+//    @Override
+//    public void getProfile(HttpSession session) {
+//        Object email =session.getAttribute("email");
+//        Object userId =session.getAttribute("userId");
+//    }
+
+    @Override
+    public void getProfile(HttpSession session) {
+
+        if (session ==null)return;
+        Object email =session.getAttribute("email");
+        Object userId =session.getAttribute("userId");
+    }
+
+
 }

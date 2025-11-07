@@ -14,6 +14,8 @@ public class UserRequestDto {
     String username;
     String password;
 
+    String email;
+
     private String providerId;
 
     @Enumerated(value = EnumType.STRING)
