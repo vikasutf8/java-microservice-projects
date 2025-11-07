@@ -41,8 +41,45 @@ docker exec -it mongodb mongosh -u admin -p admin123 --authenticationDatabase ad
 
 ---
 - Mapping -- haven't fk  concept
-- embedding
+- embedding 
 - referencing
 
 ---
-- caching  allready in springboot
+# Cache & Redis
+- caching  already in springboot
+
+### SetUp
+- both should be same net
+```
+docker network create redis-net
+
+```
+
+```
+docker run -d \
+  --name redis-server \
+  --network redis-net \
+  -p 6379:6379 \
+  redis
+
+```
+
+```
+docker run -d \
+  --name redisinsight \
+  --network redis-net \
+  -p 5540:5540 \
+  redis/redisinsight:latest
+
+```
+
+- now create docker compose file for this
+1. Enitity should implement Serializaing  
+2. EnableCaching configuration
+3. Cachealbe at get
+4. CachePut at post/put
+5. Cacheevit at delete
+- Implment TTL
+- configuration management 
+
+- 
