@@ -145,6 +145,9 @@ public class UserServiceImpl implements UserService {
         //else singup then login
     }
 
+    private User signUpInternal(User user) {
+        return null;
+    }
 
 
     public void login(String email, String password, HttpSession session) throws IOException {
