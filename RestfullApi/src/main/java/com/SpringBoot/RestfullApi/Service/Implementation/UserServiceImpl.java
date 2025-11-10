@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
                 .providerId(providerId)
                 .providerType(authProviderType)
 //                .roles(Set.of(UserRoleType.PATIENT)) // bydefual all  entry are patient
-                .roles(signupRequestDto.getUserRole())
+                .userRole(signupRequestDto.getUserRole())
                 .build();
 
         if (authProviderType == AuthProviderType.EMAIL) {
@@ -109,6 +109,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public ResponseEntity<UserResponseDto> handleOauth2LoginRequest(OAuth2User oAuth2User, String registrationId) {
 //        provider type and provider id
+//        return null;
         AuthProviderType providerType = oAuthUtil.getProviderTypeFromRegistrationId(registrationId);
         String providerId = oAuthUtil.determineProviderTypeFormOAuth2User(oAuth2User,registrationId);
         String name =oAuth2User.getAttribute("name");

@@ -138,3 +138,14 @@ Produces file: appendonly.aof
   - PSUBSCRIBE
   - Publish
   - ?? at pattern way mutlipe producer at t0 hit so single consumer so which pattern it listen
+---
+- Redis Streams
+  - event driven arch
+  - redis streams vs pub/sub
+  - worflows
+  - cmd for prod,cons
+  - monitoring & managemant
+  - Sacling  Strategies
+  - end to end flow 
+  - event pipileineProvider
+  - Integration 

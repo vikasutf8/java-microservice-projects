@@ -1,5 +1,6 @@
 package com.SpringBoot.RestfullApi.Entity;
 
+import com.SpringBoot.RestfullApi.Dto.Enum.AuthProviderType;
 import com.SpringBoot.RestfullApi.Entity.Enum.UserRoleType;
 import jakarta.persistence.*;
 import lombok.*;
@@ -32,6 +33,10 @@ public class User  implements UserDetails , Serializable {
 
     private String email;
 
+    private String providerId;
+
+    private AuthProviderType providerType;
+
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     Set<UserRoleType> userRole =new HashSet<>();
@@ -47,6 +52,7 @@ public class User  implements UserDetails , Serializable {
     }
 
     public User orElseThrow(Object userNotFound) {
+        return null;
     }
 }
 
