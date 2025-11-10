@@ -148,4 +148,12 @@ Produces file: appendonly.aof
   - Sacling  Strategies
   - end to end flow 
   - event pipileineProvider
-  - Integration 
+  - Integration
+---
+
+- Aspect orinated Programming (AOP)
+  - Aspect
+  - wearing 
+  - JoinPoint
+  - Advice
+  - PointCut
