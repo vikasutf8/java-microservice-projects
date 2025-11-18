@@ -15,6 +15,7 @@
        <module>Payment_service</module>
        <module>Notification-service</module>
        <module>Reward_Service</module>
+       <module>Api-Gateway</module>
 
 
        <!-- Add your other services here -->

@@ -30,7 +30,7 @@ public class RewardConsumer {
         this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 
-    @KafkaListener(topics = "txn-initiated", groupId = "reward-group")
+    @KafkaListener(topics = "payment-initiated", groupId = "reward-group")
     public void consumerTransaction(Transaction transaction){
         try {
             if (rewardRepository.existsByTransactionId(transaction.getId())){

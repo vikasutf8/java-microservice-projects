@@ -1,0 +1,26 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: Api-Gateway
+  cloud:
+    gateway:
+      default-filters:
+
+      routes:
+        - id:  user-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/auth/**
+        - id: payment-service
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/transaction/**
+        - id: notification-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/notification/**
+        - id: Reward_Service
+          uri: http://localhost:8085
+          predicates:
+            - Path=/api/rewards/**
