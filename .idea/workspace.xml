@@ -87,6 +87,15 @@
           <line>11</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/Api-Gateway/src/main/java/com/paypal/Api_Gateway/Utils/JwtUtils.java</url>
+          <line>27</line>
+          <properties class="com.paypal.Api_Gateway.Utils.JwtUtils">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
