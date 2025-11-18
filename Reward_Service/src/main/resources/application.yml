@@ -1,0 +1,31 @@
+server:
+  port: 8089
+spring:
+  application:
+    name: Reward_Service
+
+  kafka:
+    bootstrap-servers: localhost:9092
+
+    consumer:
+      group-id: reward-group
+      auto-offest-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+
+      properties:
+        # 1. Delegate for ErrorHandlingDeserializer
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+
+        # 2. Configure the JsonDeserializer delegate
+        spring.json.trusted.packages: "*"
+
+        # 3. Default target type for the JSON payload
+        spring.json.value.default.type: com.paypal.Reward_Service.Enitity.Transaction
+
+        spring.kafka.consumer.properties.spring.json.use.type.headers: false
+
+        spring.kafka.consumer.properties.spring.json.value.default.type: com.paypal.Reward_Service.Enitity.Transaction
+
+    listener:
+      missing-topics-fatal: false # avoid in productions
