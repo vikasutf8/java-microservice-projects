@@ -49,5 +49,8 @@ public class Transaction {
     private String status;
 
 
+    public Transaction(Long id, String credit, Long amount, String success) {
+
+    }
 }
 
