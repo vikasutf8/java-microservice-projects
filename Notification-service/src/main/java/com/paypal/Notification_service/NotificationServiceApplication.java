@@ -11,3 +11,5 @@ public class NotificationServiceApplication {
 	}
 
 }
+///Users/vikasarya/EndRevist/java-Project/paypal-clone/Notification-service/src/main/java/com/paypal/Notification_service/NotificationServiceApplication.java
+///Users/vikasarya/EndRevist/java-Project/paypal-clone/Payment_service/src/main/java/com/paypal/Payment_service/PaymentServiceApplication.java

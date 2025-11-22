@@ -19,6 +19,9 @@
       </list>
     </option>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Payment_service/src/main/java/com/paypal/Payment_service/PaymentServiceApplication.java" root0="SKIP_INSPECTION" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -30,32 +33,67 @@
     <option name="openDirectoriesWithSingleClick" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ApiGatewayApplication.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/vikasarya/EndRevist/java-Project/paypal-clone",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application..executor&quot;: &quot;Run&quot;,
+    &quot;Application.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.NotificationServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PaymentServiceApplication.executor&quot;: &quot;Coverage&quot;,
+    &quot;Maven.Payment_service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/vikasarya/EndRevist/java-Project/paypal-clone&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "JAVA"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;JAVA&quot;
     ]
   }
-}]]></component>
-  <component name="RunManager">
-    <configuration name="ApiGatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.paypal.Api_Gateway.ApiGatewayApplication" />
-      <module name="Api-Gateway" />
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Payment_service/src/main/java/com/paypal/Payment_service" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.PaymentServiceApplication">
+    <configuration type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.paypal.Payment_service;" />
+      <module name="Payment_service" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.paypal.Api_Gateway.*" />
+          <option name="ENABLED" value="false" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificationServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.paypal.Notification_service.NotificationServiceApplication" />
+      <module name="Notification-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.paypal.Notification_service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PaymentServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.paypal.Payment_service.PaymentServiceApplication" />
+      <module name="Payment_service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.paypal.Payment_service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -65,7 +103,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ApiGatewayApplication" />
+        <item itemvalue="Application.PaymentServiceApplication" />
+        <item itemvalue="Application.NotificationServiceApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -84,7 +123,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Payment_service/src/main/java/com/paypal/Payment_service/config/AppConfig.java</url>
+          <url>file://$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/config/AppConfig.java</url>
           <line>11</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
@@ -116,18 +155,18 @@
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/Payment_service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java</url>
-          <line>42</line>
-          <properties class="com.paypal.Payment_service.service.TransactionServiceImpl" method="createTransaction">
+          <url>file://$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java</url>
+          <line>41</line>
+          <properties class="com.paypal.Payment_service.service.TransactionServiceImpl">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/Payment_service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java</url>
-          <line>73</line>
-          <properties class="com.paypal.Payment_service.service.TransactionServiceImpl" method="getAllTransactions">
+          <url>file://$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java</url>
+          <line>72</line>
+          <properties class="com.paypal.Payment_service.service.TransactionServiceImpl">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
@@ -135,5 +174,10 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/paypal_clone$PaymentServiceApplication.ic" NAME="PaymentServiceApplication Coverage Results" MODIFIED="1763804429565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.paypal.Payment_service.*</FILTER>
+    </SUITE>
   </component>
 </project>

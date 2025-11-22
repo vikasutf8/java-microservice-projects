@@ -12,7 +12,7 @@
 
    <modules>
        <module>user-service</module>
-       <module>Payment_service</module>
+       <module>Payment-service</module>
        <module>Notification-service</module>
        <module>Reward_Service</module>
        <module>Api-Gateway</module>
