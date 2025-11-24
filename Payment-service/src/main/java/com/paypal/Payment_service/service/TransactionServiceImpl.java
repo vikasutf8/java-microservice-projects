@@ -1,9 +1,12 @@
 package com.paypal.Payment_service.service;
 
+import java.net.http.HttpHeaders;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -44,6 +47,55 @@ public class TransactionServiceImpl implements TransactionService {
         Long senderId = transaction.getsenderId();
         Long receiverId = transaction.getreceiverId();
         Double amount = transaction.getAmount();
+
+        //step1.. save db that pending status\
+        transaction.setStatus("PENDING");
+        transaction.setTimestamp(LocalDateTime.now());
+
+        Transaction transaction1 =transactionRepo.save(transaction);
+        System.out.println("transection pendong save"+transaction1);
+
+        //
+        String walletServiceUrl = "";
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType("");
+
+        String holdReference = null;
+        boolean captured = false;
+// circuit braker design pattern
+        try {
+            // Step 1: Place hold on sender wallet
+            String holdJson = String.format(
+                    "{ \"userId\": %d, \"currency\": \"INR\", \"amount\": %.2f }",
+                    senderId, amount
+            );
+            HttpEntity<String> holdEntity = new HttpEntity<>(holdJson, httpHeaders);
+
+            ResponseEntity<String> holdResponse =
+                    restTemplate.postForEntity(walletServiceUrl + "/hold", holdEntity, String.class);
+
+            if (!holdResponse.getStatusCode().is2xxSuccessful() || holdResponse.getBody() == null) {
+                throw new RuntimeException("Failed to place hold: status=" + holdResponse.getStatusCode());
+            }
+
+            // Extract hold reference safely
+            JsonNode holdNode = objectMapper.readTree(holdResponse.getBody());
+
+            if (holdNode.get("holdReference") == null) {
+                throw new RuntimeException("Hold response missing holdReference");
+            }
+
+            holdReference = holdNode.get("holdReference").asText();
+            System.out.println("• Hold placed: " + holdReference);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Hold placement failed: " + e.getMessage());
+        }
+
+
+
+
 
         Transaction newTransaction = new Transaction();
         newTransaction.setsenderId(senderId);
