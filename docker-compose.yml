@@ -1,19 +1,21 @@
 services:
-  app:
-    build: .
-    container_name: elastic-search-app
-    ports:
-      - "8080:8080"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/postgres
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: postgres
-    networks:
-      - appnet
+#  app:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    container_name: elastic-search-app
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/postgres
+#      SPRING_DATASOURCE_USERNAME: postgres
+#      SPRING_DATASOURCE_PASSWORD: postgres
+#    networks:
+#      - appnet
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.18.1
-    container_name: elasticsearch
+    container_name: elasticsearch12
     environment:
       discovery.type: single-node
       xpack.security.enabled: "false"
@@ -25,7 +27,7 @@ services:
 
   kibana:
     image: docker.elastic.co/kibana/kibana:8.18.1
-    container_name: kibana
+    container_name: kibana12
     environment:
       ELASTICSEARCH_HOSTS: "http://elasticsearch:9200"
     ports:
