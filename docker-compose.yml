@@ -1,46 +1,43 @@
-version: '3.8'
-
 services:
   app:
     build: .
-    container_name: springboot-app
+    container_name: elastic-search-app
     ports:
       - "8080:8080"
-    depends_on:
-      - elasticsearch
     environment:
-      - SPRING_ELASTICSEARCH_URIS=http://elasticsearch:9200
+      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
     networks:
-      - esnet
+      - appnet
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.18.1
     container_name: elasticsearch
     environment:
-      - discovery.type=single-node
-      - xpack.security.enabled=false
-      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      ES_JAVA_OPTS: "-Xms1g -Xmx1g"
     ports:
       - "9200:9200"
-    volumes:
-      - es_data:/usr/share/elasticsearch/data
     networks:
-      - esnet
+      - appnet
 
   kibana:
     image: docker.elastic.co/kibana/kibana:8.18.1
     container_name: kibana
     environment:
-      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      ELASTICSEARCH_HOSTS: "http://elasticsearch:9200"
     ports:
       - "5601:5601"
     depends_on:
       - elasticsearch
     networks:
-      - esnet
+      - appnet
 
 volumes:
   es_data:
 
 networks:
-  esnet:
+  appnet:
+    driver: bridge
