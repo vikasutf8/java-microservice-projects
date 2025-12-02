@@ -1,0 +1,92 @@
+pipeline {
+    agent any
+    
+    tools {
+        maven 'maven-jobs2'
+        jdk 'jdk25'
+    }
+    
+    environment{
+        SONAR_SANNER = tool 'sonar-scanner-jobs2'
+    }
+
+    stages {
+        stage('Git checkout') {
+            steps {
+                git branch: 'elastic-search-java',
+                    url: 'https://github.com/vikasutf8/java-microservice-projects.git'
+            }
+        }
+        
+        stage('Compile') {
+            steps {
+                sh "mvn compile"
+            }
+        }
+        
+        stage('Test-cases') {
+            steps {
+                sh "mvn test"
+            }
+        }
+        
+        stage('Sonarqube-analysis') {
+            steps {
+                withSonarQubeEnv('sonar-jobs2') {
+                    sh '''
+                    $SONAR_SANNER/bin/sonar-scanner-jobs2 -Dsonar.projectName elasticSearch \
+                    -Dsonar.projectKey elasticSearch \
+                    -Dsonar.java.binaries=.
+                    '''
+                }
+            }
+        }
+        
+        stage('Owasp-scan') {
+            steps {
+                dependencyCheck additionalArguments: '--scan .',odcInstallation:'dc-jobs2'
+                dependencyCheckPublisher pattern:'**/dependency-check-report.xml'
+            }
+        }
+        
+         stage('Build-application') {
+            steps {
+                sh "mvn package"
+            }
+        }
+        
+        stage('Docker-image') {
+            steps {
+                script{
+                    withDockerRegistry(credentialsId: 'docker-jobs2', toolName: 'docker-job2'){
+                        sh "docker build -t elasticSeach-jobs2:latest"
+                    }
+                }
+            }
+        }
+        
+        stage('Docker-registery') 
+        {
+            steps {
+                script{
+                    withDockerRegistry(credentialsId: 'docker-jobs2', toolName: 'docker-job2'){
+                        
+                        sh "docker tag elasticSeach-jobs2:latest vikasutf8/elasticSeach-jobs2:latest"
+                           sh "docker push vikasutf8/elasticSeach-jobs2:latest"
+                        
+                    }
+                }
+            }
+        }
+        stage('Deploy-application') 
+        {
+            steps {
+                script{
+                    withDockerRegistry(credentialsId: 'docker-jobs2', toolName: 'docker-job2'){
+                        sh "docker run -d -p 8081:8080  vikasutf8/elasticSeach-jobs2:latest"
+                    }
+                }
+            }
+        }
+    }
+}
