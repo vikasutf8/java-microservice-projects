@@ -23,6 +23,17 @@ pipeline {
                 sh "mvn compile"
             }
         }
+
+        stage('Start-ES') {
+            steps {
+                sh """
+                docker run -d --name es-test \
+                --network jenkins_network \
+                -p 9200:9200 -e discovery.type=single-node \
+                docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+                """
+            }
+        }
         
         stage('Test-cases') {
             steps {
