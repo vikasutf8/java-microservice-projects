@@ -1,3 +1,4 @@
+# PayPal - Payment System
 
 ## User-Service
 -  Spring web -> RESTfull API client and server request and response
@@ -13,11 +14,30 @@
 - ResponseEntity is a class that represents a response from a RESTful API as json format
 
 
-### API Restful
+### API Restfull Documations
+
+---
+
+## API-Gateway
 
 
+---
+## Payment Service
 
-## Docker ==Compose. -- 
+
+---
+## Notification Service
+
+
+---
+## Wallet Service
+
+
+---
+## Reward Service
+
+---
+# Docker ==Compose. -- 
 -  kafka 
    docker-compose up -d
 -  zookeeper

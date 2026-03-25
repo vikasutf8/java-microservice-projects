@@ -4,11 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="" />
+    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_/Users/vikasarya/EndRevist/java-Project/paypal-clone" value="32af9XXYqWQUfhci6H07GQGnu83" />
+    </persistenceIdMap>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -18,6 +26,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Payment_service/src/main/java/com/paypal/Payment_service/PaymentServiceApplication.java" root0="SKIP_INSPECTION" />
@@ -43,6 +54,8 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "paypal",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/vikasarya/EndRevist/java-Project/paypal-clone",
     "project.structure.last.edited": "Project",
@@ -108,6 +121,13 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.138" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -126,6 +146,11 @@
           <url>file://$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/config/AppConfig.java</url>
           <line>11</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java</url>
+          <line>377</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/Api-Gateway/src/main/java/com/paypal/Api_Gateway/Utils/JwtUtils.java</url>
@@ -156,7 +181,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java</url>
-          <line>41</line>
+          <line>61</line>
           <properties class="com.paypal.Payment_service.service.TransactionServiceImpl" method="createTransaction">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -165,7 +190,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java</url>
-          <line>72</line>
+          <line>380</line>
           <properties class="com.paypal.Payment_service.service.TransactionServiceImpl" method="getAllTransactions">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -179,5 +204,13 @@
     <SUITE FILE_PATH="coverage/paypal_clone$PaymentServiceApplication.ic" NAME="PaymentServiceApplication Coverage Results" MODIFIED="1763804429565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>com.paypal.Payment_service.*</FILTER>
     </SUITE>
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
   </component>
 </project>
