@@ -17,9 +17,9 @@ import com.paypal.user_service.repository.UserRepository;
 public class UserServiceImpl implements UserService {
 
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    private WalletClient walletClient;
+//    private final WalletClient walletClient;
 
 //    public UserServiceImpl(UserRepository userRepository) {
 //        this.userRepository = userRepository;
@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
             CreateWalletClient client =new CreateWalletClient();
             client.setUserId(savedUser.getId());
             client.setCurrency("INR");
-            walletClient.createWallet(client);
+//            walletClient.createWallet(client);
 
         } catch (Exception e) {
 

@@ -1,5 +1,6 @@
 package com.paypal.user_service.security;
 
+import com.paypal.user_service.utils.JwtRequestFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
 @Configuration
@@ -18,6 +20,8 @@ public class SecurityConfig {
     // disable CSRF
     // CSRF: Cross Site Request Forgery
 
+    private final JwtRequestFilter jwtRequestFilter;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -25,13 +29,14 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception  {
+        System.out.println("spring security chain");
         http
-            .csrf(AbstractHttpConfigurer::disable) // 🔒 Disable CSRF for APIs (especially useful for stateless REST APIs)
-            .authorizeHttpRequests(auth -> auth
-//                .requestMatchers("/api/v1/user/**").permitAll() // ✅ Allow all requests to /api/v1/user/**
-                .requestMatchers("/api/v1/auth/**").permitAll() // ✅ Allow all requests to /api/v1/auth/**
-                .anyRequest().authenticated() // 🔐 Secure all other routes
-            );
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/v1/auth/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class); // ✅ correct placement
 
         return http.build();
     }

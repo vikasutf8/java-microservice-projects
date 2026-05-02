@@ -54,6 +54,8 @@ public class UserController {
 
     @GetMapping("/all")
     public ResponseEntity<List<User>> getAllUsers() {
+        System.out.println("user all list");
+
         return ResponseEntity.ok(userService.findAllUsers());
     }
 }
