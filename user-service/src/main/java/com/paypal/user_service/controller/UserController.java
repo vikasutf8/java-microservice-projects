@@ -2,6 +2,8 @@ package com.paypal.user_service.controller;
 
 import java.util.List;
 
+import com.paypal.user_service.dto.ApiResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,23 +18,37 @@ import com.paypal.user_service.service.UserService;
 
 @RestController
 @RequestMapping("api/v1/user")
+@RequiredArgsConstructor
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+//    public UserController(UserService userService) {
+//        this.userService = userService;
+//    }
 
 
-    @PostMapping("create")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.creataUser(user));
+    @PostMapping("/create")
+    public ResponseEntity<ApiResponse<User>> createUser(@RequestBody User user) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(
+                        ApiResponse.<User>builder()
+                                .status(HttpStatus.CREATED.value())
+                                .message("User created successfully")
+                                .data(userService.creataUser(user))
+                                .build()
+        );
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        return userService.getUserById((id)).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<ApiResponse<User>> getUserById(@PathVariable Long id) {
+        return ResponseEntity.ok(
+                ApiResponse.<User>builder()
+                        .status(HttpStatus.OK.value())
+                        .message("User fetched successfully")
+                        .data(userService.getUserById(id).orElse(null))
+                        .build()
+        );
     }
 
 

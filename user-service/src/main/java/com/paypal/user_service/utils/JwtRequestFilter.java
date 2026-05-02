@@ -3,6 +3,7 @@ package com.paypal.user_service.utils;
 import java.io.IOException;
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,12 +17,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Component
+@RequiredArgsConstructor
 public class JwtRequestFilter extends OncePerRequestFilter{
     private final JwtUtils jwtUtils;
 
-    public JwtRequestFilter(JwtUtils jwtUtils) {
-        this.jwtUtils = jwtUtils;
-    }
+//    public JwtRequestFilter(JwtUtils jwtUtils) {
+//        this.jwtUtils = jwtUtils;
+//    }
 // HTTP request calling this filter working 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,FilterChain chain) throws  ServletException, IOException {
@@ -35,9 +37,10 @@ public class JwtRequestFilter extends OncePerRequestFilter{
         if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
             jwt = authorizationHeader.substring(7);
             try{
-                username = jwtUtils.extractUsername(jwt);
+                username = jwtUtils.extractUsername(jwt); //email
             }catch (Exception e){
                 //log
+                System.out.printf(e.getMessage(),"Error0 on jwtRequestFilter");
             }
         }
 

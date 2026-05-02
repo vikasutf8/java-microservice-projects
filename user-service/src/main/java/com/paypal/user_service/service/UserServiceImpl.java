@@ -4,13 +4,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import com.paypal.user_service.Client.WalletClient;
 import com.paypal.user_service.dto.CreateWalletClient;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import com.paypal.user_service.entity.User;
 import com.paypal.user_service.repository.UserRepository;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
 
@@ -18,10 +21,10 @@ public class UserServiceImpl implements UserService {
 
     private WalletClient walletClient;
 
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-        this.walletClient = walletClient;
-    }
+//    public UserServiceImpl(UserRepository userRepository) {
+//        this.userRepository = userRepository;
+//        this.walletClient = walletClient;
+//    }
 
 
     @Override
@@ -35,8 +38,9 @@ public class UserServiceImpl implements UserService {
             walletClient.createWallet(client);
 
         } catch (Exception e) {
+
             userRepository.deleteAllById(Collections.singleton(savedUser.getId()));
-            throw new RuntimeException(e);
+            throw new RuntimeException(e.getMessage());
         }
         return savedUser;
     }
@@ -54,7 +58,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> getUserById(Long id) {
-        return userRepository.findById(id);
+        return Optional.of(userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found with id: " + id)));
     }
 
 }

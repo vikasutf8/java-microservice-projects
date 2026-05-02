@@ -7,15 +7,20 @@
 
 -  Spring Security -> authentication and authorization
 ![alt text](image.png)
-#### Questions
-1. what is entity? 
-- A table in database stored as an object name in Table annotation
-2. ResponseEntity -> what is it?
-- ResponseEntity is a class that represents a response from a RESTful API as json format
+
+
 
 
 ### API Restfull Documations
 
+### Auth : api/v1/auth
+1. Post : /signup
+2. Post : /login
+
+### User : api/v1/user
+1. Get : /{id}
+2. Get : /all
+3. Post : /create ---> internally Sync way create walletClient 
 ---
 
 ## API-Gateway

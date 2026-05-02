@@ -2,6 +2,8 @@
 package com.paypal.user_service.repository;
 
 import java.util.Optional;
+
+import jakarta.annotation.Nonnull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +17,5 @@ public interface UserRepository extends JpaRepository<User,Long> {
 // User: entity class
 // Optional: return type
     Optional<User> findByEmail(String email);
+    Optional<User> findById(@Nonnull Long id);
 }

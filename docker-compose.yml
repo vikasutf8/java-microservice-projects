@@ -34,3 +34,29 @@ services:
       - "5540:5540"
     depends_on:
       - redis
+
+  mysql:
+    image: mysql:8.0  # Official MySQL image
+    container_name: paypal
+    restart: always  # Auto restart if container crashes
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: paypal-db
+      MYSQL_USER: paypal-db
+      MYSQL_PASSWORD: paypal-db
+    ports:
+      - "3306:3306"  # Host:Container
+
+    volumes:
+      - mysql_data:/var/lib/mysql  # Persist DB data
+
+    # Health check to ensure DB is ready
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+
+
+volumes:
+  mysql_data:

@@ -32,6 +32,8 @@ public class JwtUtils {
                 .signWith(getSigningKey(),SignatureAlgorithm.HS256)
                 .compact();
     }
+
+    /// email id and role of that
     
 
     //extracting email from jwt token
