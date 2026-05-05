@@ -50,6 +50,9 @@ public class Transaction {
 
 
     public Transaction(Long id, String credit, Long amount, String success) {
+        this.senderId =id;
+//        this.amount =(Double) amount*1.00;
+        this.status =success;
 
     }
 }

@@ -12,6 +12,7 @@ import com.paypal.Wallet_Service.Repository.WalletRepository;
 import jakarta.transaction.Transactional;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -19,6 +20,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Data
+@Slf4j
 public class WalletServiceImpl implements WalletService{
 
     private final WalletRepository walletRepository;
@@ -54,13 +56,19 @@ public class WalletServiceImpl implements WalletService{
 
         Wallet wallet =walletRepository.findByUserIdAndCurrency(request.getUserId(),"INR").orElseThrow();
 
-
+        log.info("Current Wallet State: id={}, userId={}, currency={}, balance={}, available={}",
+                wallet.getId(),
+                wallet.getUserId(),
+                wallet.getCurrency(),
+                wallet.getBalance(),
+                wallet.getAvailableBalance()
+        );
         wallet.setBalance(wallet.getBalance() +request.getAmount());
         wallet.setAvailableBalance(wallet.getAvailableBalance()+ request.getAmount());
         Wallet saved =walletRepository.save(wallet);
 
         Long amount =request.getAmount();
-
+// what happing here......
         transactionRepository.save(
                 new Transaction(wallet.getId(),"CREDIT",amount,"SUCCESS") // !! WRONG
         );
@@ -94,8 +102,12 @@ public class WalletServiceImpl implements WalletService{
                     request.getAmount()
             );
 
-            Wallet wallet =walletRepository.findByUserIdAndCurrency(request.getUserId(),"INR").orElseThrow();
-
+            Wallet wallet = walletRepository
+                .findByUserIdAndCurrency(request.getUserId(), request.getCurrency())
+                .orElseThrow(() -> new RuntimeException(
+                        "Wallet not found for userId: " + request.getUserId() +
+                                " and currency: " + request.getCurrency()
+                ));
             if(wallet.getAvailableBalance() <request.getAmount())throw new InSufficientException("Not enoght balance");
 
         wallet.setBalance(wallet.getBalance() -request.getAmount());
@@ -148,7 +160,10 @@ public class WalletServiceImpl implements WalletService{
                 request.getAmount()
         );
 
-        Wallet wallet =walletRepository.findByUserIdAndCurrency(request.getUserId(),"INR").orElseThrow();
+        Wallet wallet =walletRepository.findByUserIdAndCurrency(request.getUserId(), request.getCurrency()).orElseThrow(() -> new RuntimeException(
+                "Wallet not found for userId: " + request.getUserId() +
+                        " and currency: " + request.getCurrency()
+        ));
         if(wallet.getAvailableBalance() <request.getAmount())throw new InSufficientException("Not enoght balance");
 
         wallet.setAvailableBalance(wallet.getAvailableBalance()- request.getAmount());
@@ -180,7 +195,11 @@ public class WalletServiceImpl implements WalletService{
     @Override
     @Transactional
     public WalletResponse captureHold(CaptureRequest request) {
-        WalletHold walletHold =walletHoldRepository.findByHoldReference(request.getHoldReference()).orElseThrow();
+        WalletHold walletHold =walletHoldRepository.findByHoldReference(request.getHoldReference()).orElseThrow(
+                ()->new RuntimeException(
+                        "WalletHold not found for holdReference: " + request.getHoldReference()
+                        )
+        );
 
         if(!WalletStatus.ACTIVE.equals(walletHold.getStatus())){
             throw new IllegalStateException("Holed is not active");

@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="Refactor: implement ApiResponse wrapper for notifications and enhance controller methods">
-      <change afterPath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Dto/ApiResponse.java" afterDir="false" />
+    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="Refactor: implement ApiResponse wrapper in WalletController for enhanced response structure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Controller/WalletController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Controller/WalletController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reward_Service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Reward_Service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reward_Service/src/main/java/com/paypal/Reward_Service/Config/KafkaConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Reward_Service/src/main/java/com/paypal/Reward_Service/Config/KafkaConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reward_Service/src/main/java/com/paypal/Reward_Service/Enitity/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Reward_Service/src/main/java/com/paypal/Reward_Service/Enitity/Transection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reward_Service/src/main/java/com/paypal/Reward_Service/Kafka/RewardConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Reward_Service/src/main/java/com/paypal/Reward_Service/Kafka/RewardConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reward_Service/src/main/java/com/paypal/Reward_Service/Repository/RewardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Reward_Service/src/main/java/com/paypal/Reward_Service/Repository/RewardRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reward_Service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Reward_Service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Enitity/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Enitity/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Service/WalletServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Service/WalletServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,8 +84,12 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.ApiGatewayApplication.executor": "Run",
+    "Spring Boot.NotificationServiceApplication.executor": "Run",
     "Spring Boot.PaymentServiceApplication.executor": "Run",
+    "Spring Boot.RewardServiceApplication.executor": "Run",
     "Spring Boot.UserServiceApplication.executor": "Run",
+    "Spring Boot.WalletServiceApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "paypal",
     "kotlin-language-version-configured": "true",
@@ -110,26 +120,34 @@
       <recent name="com.paypal.Payment_service.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.PaymentServiceApplication">
-    <configuration type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="com.paypal.Payment_service;" />
-      <module name="Payment_service" />
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="configurationStatuses">
+      <map>
+        <entry key="SpringBootApplicationConfigurationType">
+          <value>
+            <map>
+              <entry key="ApiGatewayApplication" value="STOPPED" />
+              <entry key="NotificationServiceApplication" value="FAILED" />
+              <entry key="RewardServiceApplication" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.WalletServiceApplication">
+    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="Api-Gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.paypal.Api_Gateway.ApiGatewayApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.paypal.Api_Gateway.*" />
-          <option name="ENABLED" value="false" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="NotificationServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.paypal.Notification_service.NotificationServiceApplication" />
-      <module name="Notification-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.paypal.Notification_service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -137,12 +155,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PaymentServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.paypal.Payment_service.PaymentServiceApplication" />
-      <module name="Payment_service" />
+    <configuration name="NotificationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="Notification-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.paypal.Notification_service.NotificationServiceApplication" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.paypal.Payment_service.*" />
+          <option name="PATTERN" value="com.paypal.Notification_service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -164,13 +183,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+    <configuration name="RewardServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
-      <module name="user-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.paypal.user_service.UserServiceApplication" />
+      <module name="Reward_Service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.paypal.Reward_Service.RewardServiceApplication" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.paypal.user_service.*" />
+          <option name="PATTERN" value="com.paypal.Reward_Service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WalletServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="Wallet_Service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.paypal.Wallet_Service.WalletServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.paypal.Wallet_Service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -180,10 +213,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.RewardServiceApplication" />
+        <item itemvalue="Spring Boot.WalletServiceApplication" />
+        <item itemvalue="Spring Boot.ApiGatewayApplication" />
+        <item itemvalue="Spring Boot.NotificationServiceApplication" />
         <item itemvalue="Spring Boot.PaymentServiceApplication" />
-        <item itemvalue="Spring Boot.UserServiceApplication" />
-        <item itemvalue="Application.PaymentServiceApplication" />
-        <item itemvalue="Application.NotificationServiceApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -235,7 +269,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777984346387</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Refactor: implement ApiResponse wrapper in WalletController for enhanced response structure">
+      <option name="closed" value="true" />
+      <created>1777985084538</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1777985084538</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,7 +299,8 @@
     <MESSAGE value="Refactor: improve JWT handling and enhance security configurations" />
     <MESSAGE value="Refactor: enhance transaction handling and improve API response structure" />
     <MESSAGE value="Refactor: implement ApiResponse wrapper for notifications and enhance controller methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor: implement ApiResponse wrapper for notifications and enhance controller methods" />
+    <MESSAGE value="Refactor: implement ApiResponse wrapper in WalletController for enhanced response structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor: implement ApiResponse wrapper in WalletController for enhanced response structure" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -345,24 +388,6 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Service/WalletServiceImpl.java</url>
-          <line>30</line>
-          <properties class="com.paypal.Wallet_Service.Service.WalletServiceImpl" method="createWallet">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Service/WalletServiceImpl.java</url>
-          <line>47</line>
-          <properties class="com.paypal.Wallet_Service.Service.WalletServiceImpl" method="credit">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java</url>
