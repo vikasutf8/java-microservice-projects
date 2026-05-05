@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="Refactor: implement ApiResponse wrapper in WalletController for enhanced response structure">
+    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="Refactor: correct spelling of transactionId in Reward and RewardConsumer classes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reward_Service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Reward_Service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reward_Service/src/main/java/com/paypal/Reward_Service/Config/KafkaConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Reward_Service/src/main/java/com/paypal/Reward_Service/Config/KafkaConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reward_Service/src/main/java/com/paypal/Reward_Service/Enitity/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Reward_Service/src/main/java/com/paypal/Reward_Service/Enitity/Transection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reward_Service/src/main/java/com/paypal/Reward_Service/Kafka/RewardConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Reward_Service/src/main/java/com/paypal/Reward_Service/Kafka/RewardConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reward_Service/src/main/java/com/paypal/Reward_Service/Repository/RewardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Reward_Service/src/main/java/com/paypal/Reward_Service/Repository/RewardRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reward_Service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Reward_Service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Enitity/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Enitity/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Service/WalletServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Service/WalletServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,10 +205,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.NotificationServiceApplication" />
         <item itemvalue="Spring Boot.RewardServiceApplication" />
         <item itemvalue="Spring Boot.WalletServiceApplication" />
         <item itemvalue="Spring Boot.ApiGatewayApplication" />
-        <item itemvalue="Spring Boot.NotificationServiceApplication" />
         <item itemvalue="Spring Boot.PaymentServiceApplication" />
       </list>
     </recent_temporary>
@@ -277,7 +269,23 @@
       <option name="project" value="LOCAL" />
       <updated>1777985084538</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Refactor: enhance WalletServiceImpl with logging and improve error handling">
+      <option name="closed" value="true" />
+      <created>1777995455548</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1777995455548</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Refactor: correct spelling of transactionId in Reward and RewardConsumer classes">
+      <option name="closed" value="true" />
+      <created>1777995580960</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1777995580960</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,7 +308,9 @@
     <MESSAGE value="Refactor: enhance transaction handling and improve API response structure" />
     <MESSAGE value="Refactor: implement ApiResponse wrapper for notifications and enhance controller methods" />
     <MESSAGE value="Refactor: implement ApiResponse wrapper in WalletController for enhanced response structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor: implement ApiResponse wrapper in WalletController for enhanced response structure" />
+    <MESSAGE value="Refactor: enhance WalletServiceImpl with logging and improve error handling" />
+    <MESSAGE value="Refactor: correct spelling of transactionId in Reward and RewardConsumer classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor: correct spelling of transactionId in Reward and RewardConsumer classes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
