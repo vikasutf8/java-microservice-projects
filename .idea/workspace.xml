@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="Refactor: update application.yml for improved H2 database configuration and add runtime dependency in pom.xml">
+    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="Refactor: simplify HoldRequest and DebitResponse classes by removing inheritance and adding fields">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Dto/DebitResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Dto/DebitResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Dto/HoldRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Dto/HoldRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Enitity/WalletHold.java" beforeDir="false" afterPath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Enitity/WalletHold.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Payment-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/dto/WalletDto/DebitRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/dto/WalletDto/DebitRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/dto/WalletDto/HoldRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/dto/WalletDto/HoldRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,30 +127,18 @@
         <entry key="SpringBootApplicationConfigurationType">
           <value>
             <map>
-              <entry key="ApiGatewayApplication" value="STOPPED" />
               <entry key="NotificationServiceApplication" value="STOPPED" />
+              <entry key="PaymentServiceApplication" value="STOPPED" />
               <entry key="RewardServiceApplication" value="STOPPED" />
+              <entry key="UserServiceApplication" value="STOPPED" />
+              <entry key="WalletServiceApplication" value="STOPPED" />
             </map>
           </value>
         </entry>
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.WalletServiceApplication">
-    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
-      <module name="Api-Gateway" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.paypal.Api_Gateway.ApiGatewayApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.paypal.Api_Gateway.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Spring Boot.PaymentServiceApplication">
     <configuration name="NotificationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
       <module name="Notification-service" />
@@ -192,6 +181,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="user-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.paypal.user_service.UserServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.paypal.user_service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="WalletServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
       <module name="Wallet_Service" />
@@ -208,11 +211,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.PaymentServiceApplication" />
+        <item itemvalue="Spring Boot.UserServiceApplication" />
         <item itemvalue="Spring Boot.WalletServiceApplication" />
         <item itemvalue="Spring Boot.NotificationServiceApplication" />
         <item itemvalue="Spring Boot.RewardServiceApplication" />
-        <item itemvalue="Spring Boot.ApiGatewayApplication" />
-        <item itemvalue="Spring Boot.PaymentServiceApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -296,7 +299,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777995850948</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Refactor: simplify HoldRequest and DebitResponse classes by removing inheritance and adding fields">
+      <option name="closed" value="true" />
+      <created>1777996521458</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1777996521458</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -322,7 +333,8 @@
     <MESSAGE value="Refactor: enhance WalletServiceImpl with logging and improve error handling" />
     <MESSAGE value="Refactor: correct spelling of transactionId in Reward and RewardConsumer classes" />
     <MESSAGE value="Refactor: update application.yml for improved H2 database configuration and add runtime dependency in pom.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor: update application.yml for improved H2 database configuration and add runtime dependency in pom.xml" />
+    <MESSAGE value="Refactor: simplify HoldRequest and DebitResponse classes by removing inheritance and adding fields" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor: simplify HoldRequest and DebitResponse classes by removing inheritance and adding fields" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

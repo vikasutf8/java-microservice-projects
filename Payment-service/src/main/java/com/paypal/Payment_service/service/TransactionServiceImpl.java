@@ -32,11 +32,11 @@ public class TransactionServiceImpl implements TransactionService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public TransactionServiceImpl(TransactionRepo transactionRepo, ObjectMapper objectMapper, KafkaEventProducer kafkaEventProducer) {
-        this.transactionRepo = transactionRepo;
-        this.objectMapper = objectMapper;
-        this.kafkaEventProducer = kafkaEventProducer;
-    }
+//    public TransactionServiceImpl(TransactionRepo transactionRepo, ObjectMapper objectMapper, KafkaEventProducer kafkaEventProducer) {
+//        this.transactionRepo = transactionRepo;
+//        this.objectMapper = objectMapper;
+//        this.kafkaEventProducer = kafkaEventProducer;
+//    }
 
     // Helper: best-effort release via path-style endpoint
     private void tryReleaseHold(String walletServiceUrl, String holdReference, HttpHeaders headers) {

@@ -9,5 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class HoldRequest extends CreditRequest {
+public class HoldRequest  {
+
+    private  Long userId;
+
+    private String currency;
+
+    private Long amount;
 }
