@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="Refactor: correct spelling of transactionId in Reward and RewardConsumer classes">
+    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="Refactor: update application.yml for improved H2 database configuration and add runtime dependency in pom.xml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Dto/DebitResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Dto/DebitResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Dto/HoldRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Dto/HoldRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Enitity/WalletHold.java" beforeDir="false" afterPath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Enitity/WalletHold.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +127,7 @@
           <value>
             <map>
               <entry key="ApiGatewayApplication" value="STOPPED" />
-              <entry key="NotificationServiceApplication" value="FAILED" />
+              <entry key="NotificationServiceApplication" value="STOPPED" />
               <entry key="RewardServiceApplication" value="STOPPED" />
             </map>
           </value>
@@ -205,9 +208,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.WalletServiceApplication" />
         <item itemvalue="Spring Boot.NotificationServiceApplication" />
         <item itemvalue="Spring Boot.RewardServiceApplication" />
-        <item itemvalue="Spring Boot.WalletServiceApplication" />
         <item itemvalue="Spring Boot.ApiGatewayApplication" />
         <item itemvalue="Spring Boot.PaymentServiceApplication" />
       </list>
@@ -285,7 +288,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777995580960</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Refactor: update application.yml for improved H2 database configuration and add runtime dependency in pom.xml">
+      <option name="closed" value="true" />
+      <created>1777995850948</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1777995850948</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -310,7 +321,8 @@
     <MESSAGE value="Refactor: implement ApiResponse wrapper in WalletController for enhanced response structure" />
     <MESSAGE value="Refactor: enhance WalletServiceImpl with logging and improve error handling" />
     <MESSAGE value="Refactor: correct spelling of transactionId in Reward and RewardConsumer classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor: correct spelling of transactionId in Reward and RewardConsumer classes" />
+    <MESSAGE value="Refactor: update application.yml for improved H2 database configuration and add runtime dependency in pom.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor: update application.yml for improved H2 database configuration and add runtime dependency in pom.xml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

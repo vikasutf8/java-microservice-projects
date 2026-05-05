@@ -5,9 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class HoldRequest extends CreditResponse{
+public class HoldRequest {
+    private Long userId;
+    private Long amount;
+    private String currency;
 }

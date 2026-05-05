@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class DebitResponse extends CreditResponse {
-
+public class DebitResponse  {
+    private Long userId;
+    private Long amount;
+    private String currency;
 
 }

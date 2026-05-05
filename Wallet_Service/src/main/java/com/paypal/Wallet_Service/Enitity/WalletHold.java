@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Table(name = "wallet_holds",uniqueConstraints = {
-        @UniqueConstraint(columnNames = "holdReference") // userId must be unique
+//        @UniqueConstraint(columnNames = "holdReference") // userId must be unique
 })
 public class WalletHold {
     @Id
