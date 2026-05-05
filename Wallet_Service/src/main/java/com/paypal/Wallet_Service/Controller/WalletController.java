@@ -14,15 +14,20 @@ import org.springframework.web.bind.annotation.*;
 public class WalletController {
 
     private final WalletService walletService;
-
     // ------------------------------------------
     // 1. Create Wallet
     // POST /api/v1/wallets
     // ------------------------------------------
     @PostMapping
-    public ResponseEntity<WalletResponse> createWallet(@RequestBody CreateWalletRequest request) {
+    public ResponseEntity<ApiResponse<WalletResponse>> createWallet(@RequestBody CreateWalletRequest request) {
         WalletResponse response = walletService.createWallet(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                ApiResponse.<WalletResponse>builder()
+                        .status(HttpStatus.CREATED.value())
+                        .message("Wallet created successfully")
+                        .data(response)
+                        .build()
+        );
     }
 
     // ------------------------------------------
@@ -30,9 +35,17 @@ public class WalletController {
     // POST /api/v1/wallets/credit
     // ------------------------------------------
     @PostMapping("/credit")
-    public ResponseEntity<WalletResponse> credit(@RequestBody CreditResponse request) {
+    public ResponseEntity<ApiResponse<WalletResponse>> credit(@RequestBody CreditResponse request) {
         WalletResponse response = walletService.credit(request);
-        return ResponseEntity.ok(response);
+
+        return ResponseEntity.status(HttpStatus.OK).body(
+                ApiResponse.<WalletResponse>builder()
+                        .status(HttpStatus.OK.value())
+                        .message("Wallet credited successfully")
+                        .data(response)
+                        .build()
+
+        );
     }
 
     // ------------------------------------------
@@ -40,9 +53,16 @@ public class WalletController {
     // POST /api/v1/wallets/debit
     // ------------------------------------------
     @PostMapping("/debit")
-    public ResponseEntity<WalletResponse> debit(@RequestBody DebitResponse request) {
+    public ResponseEntity<ApiResponse<WalletResponse>> debit(@RequestBody DebitResponse request) {
         WalletResponse response = walletService.debit(request);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.status(HttpStatus.OK).body(
+                ApiResponse.<WalletResponse>builder()
+                        .status(HttpStatus.OK.value())
+                        .message("Wallet debited successfully")
+                        .data(response)
+                        .build()
+
+        );
     }
 
     // ------------------------------------------
@@ -50,9 +70,16 @@ public class WalletController {
     // GET /api/v1/wallets/{userId}
     // ------------------------------------------
     @GetMapping("/{userId}")
-    public ResponseEntity<WalletResponse> getWallet(@PathVariable Long userId) {
+    public ResponseEntity<ApiResponse<WalletResponse>> getWallet(@PathVariable Long userId) {
         WalletResponse response = walletService.getWallet(userId);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.status(HttpStatus.OK).body(
+                ApiResponse.<WalletResponse>builder()
+                        .status(HttpStatus.OK.value())
+                        .message("Wallet debited successfully")
+                        .data(response)
+                        .build()
+
+        );
     }
 
     // ------------------------------------------
@@ -60,9 +87,16 @@ public class WalletController {
     // POST /api/v1/wallets/hold
     // ------------------------------------------
     @PostMapping("/hold")
-    public ResponseEntity<HoldResponse> placeHold(@RequestBody HoldRequest request) {
+    public ResponseEntity<ApiResponse<HoldResponse>> placeHold(@RequestBody HoldRequest request) {
         HoldResponse response = walletService.placeHold(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                ApiResponse.<HoldResponse>builder()
+                        .status(HttpStatus.CREATED.value())
+                        .message("Wallet debited successfully")
+                        .data(response)
+                        .build()
+
+        );
     }
 
     // ------------------------------------------
@@ -70,9 +104,16 @@ public class WalletController {
     // POST /api/v1/wallets/hold/capture
     // ------------------------------------------
     @PostMapping("/hold/capture")
-    public ResponseEntity<WalletResponse> captureHold(@RequestBody CaptureRequest request) {
+    public ResponseEntity<ApiResponse<WalletResponse> >captureHold(@RequestBody CaptureRequest request) {
         WalletResponse response = walletService.captureHold(request);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.status(HttpStatus.OK).body(
+                ApiResponse.<WalletResponse>builder()
+                        .status(HttpStatus.OK.value())
+                        .message("Wallet debited successfully")
+                        .data(response)
+                        .build()
+
+        );
     }
 
     // ------------------------------------------
@@ -80,9 +121,19 @@ public class WalletController {
     // DELETE /api/v1/wallets/hold/{holdReference}
     // ------------------------------------------
     @PostMapping("/hold/{holdReference}")
-    public ResponseEntity<HoldResponse> releaseHold(@PathVariable String holdReference) {
+    public ResponseEntity<ApiResponse<HoldResponse> >releaseHold(@PathVariable String holdReference) {
         HoldResponse response = walletService.releaseHold(holdReference);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                ApiResponse.<HoldResponse>builder()
+                        .status(HttpStatus.CREATED.value())
+                        .message("Wallet debited successfully")
+                        .data(response)
+                        .build()
+
+        );
     }
+
+
+
 }
 

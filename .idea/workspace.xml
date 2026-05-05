@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="Refactor: enhance transaction handling and improve API response structure">
-      <change afterPath="$PROJECT_DIR$/Notification-service/src/main/java/com/paypal/Notification_service/Dto/ApiResponse.java" afterDir="false" />
+    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="Refactor: implement ApiResponse wrapper for notifications and enhance controller methods">
+      <change afterPath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Dto/ApiResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notification-service/src/main/java/com/paypal/Notification_service/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Notification-service/src/main/java/com/paypal/Notification_service/controller/NotificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notification-service/src/main/java/com/paypal/Notification_service/kafka/NotificationEventConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Notification-service/src/main/java/com/paypal/Notification_service/kafka/NotificationEventConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Controller/WalletController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Wallet_Service/src/main/java/com/paypal/Wallet_Service/Controller/WalletController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,6 +105,7 @@
       <recent name="$PROJECT_DIR$/Payment_service/src/main/java/com/paypal/Payment_service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.paypal.Wallet_Service.Dto" />
       <recent name="com.paypal.Notification_service.Dto" />
       <recent name="com.paypal.Payment_service.dto" />
     </key>
@@ -227,7 +227,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777983661169</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Refactor: implement ApiResponse wrapper for notifications and enhance controller methods">
+      <option name="closed" value="true" />
+      <created>1777984346387</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1777984346387</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,7 +256,8 @@
     <MESSAGE value="Refactor: simplify DTOs and enhance API responses with ApiResponse wrapper" />
     <MESSAGE value="Refactor: improve JWT handling and enhance security configurations" />
     <MESSAGE value="Refactor: enhance transaction handling and improve API response structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor: enhance transaction handling and improve API response structure" />
+    <MESSAGE value="Refactor: implement ApiResponse wrapper for notifications and enhance controller methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor: implement ApiResponse wrapper for notifications and enhance controller methods" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
