@@ -16,16 +16,13 @@ import com.paypal.Notification_service.repository.NotificationRepository;
 import lombok.RequiredArgsConstructor;
 
 @Component
-
 public class NotificationEventConsumer  {
 
     private final NotificationRepository notificationRepository;
-    private final ObjectMapper mapper;
 
     public NotificationEventConsumer(NotificationRepository notificationRepository, ObjectMapper mapper) {
         this.notificationRepository = notificationRepository;
-        this.mapper = mapper;
-        this.mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 
     @KafkaListener(topics = "payment-initiated", groupId = "notification-service-group")
@@ -42,7 +39,7 @@ public class NotificationEventConsumer  {
 
         LocalDateTime now = LocalDateTime.now();
         notification.setSendAt(now);
-     
+     // TODO: handle exceptions and retries if saving to database fails -IMPORTNAT
         notificationRepository.save(notification);
 
     }

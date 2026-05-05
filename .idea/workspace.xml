@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="Refactor: improve JWT handling and enhance security configurations">
-      <change afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/dto/ApiResponse.java" afterDir="false" />
+    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="Refactor: enhance transaction handling and improve API response structure">
+      <change afterPath="$PROJECT_DIR$/Notification-service/src/main/java/com/paypal/Notification_service/Dto/ApiResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Api-Gateway/src/main/java/com/paypal/Api_Gateway/Config/RateLimiterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Api-Gateway/src/main/java/com/paypal/Api_Gateway/Config/RateLimiterConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Payment-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/controller/TransactionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/dto/TransferRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/dto/TransferRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/entity/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/entity/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notification-service/src/main/java/com/paypal/Notification_service/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Notification-service/src/main/java/com/paypal/Notification_service/controller/NotificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notification-service/src/main/java/com/paypal/Notification_service/kafka/NotificationEventConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Notification-service/src/main/java/com/paypal/Notification_service/kafka/NotificationEventConsumer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +106,7 @@
       <recent name="$PROJECT_DIR$/Payment_service/src/main/java/com/paypal/Payment_service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.paypal.Notification_service.Dto" />
       <recent name="com.paypal.Payment_service.dto" />
     </key>
   </component>
@@ -223,7 +219,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777729226518</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Refactor: enhance transaction handling and improve API response structure">
+      <option name="closed" value="true" />
+      <created>1777983661169</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1777983661169</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,7 +247,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Refactor: simplify DTOs and enhance API responses with ApiResponse wrapper" />
     <MESSAGE value="Refactor: improve JWT handling and enhance security configurations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor: improve JWT handling and enhance security configurations" />
+    <MESSAGE value="Refactor: enhance transaction handling and improve API response structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor: enhance transaction handling and improve API response structure" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
