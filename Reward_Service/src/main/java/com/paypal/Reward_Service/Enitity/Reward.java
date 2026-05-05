@@ -32,5 +32,7 @@ public class Reward {
 
 
     @Column(unique = true,nullable = false)
-    private Long transectionId;
+    private Long transactionId;
+
+
 }

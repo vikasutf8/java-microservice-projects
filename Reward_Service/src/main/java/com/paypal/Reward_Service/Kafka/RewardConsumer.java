@@ -41,7 +41,7 @@ public class RewardConsumer {
                     .userId(transaction.getSenderId())
                     .points(transaction.getAmount() *100)
                     .sentAt(LocalDateTime.now())
-                    .transectionId(transaction.getId())
+                    .transactionId(transaction.getId())
                     .build();
 
             rewardRepository.save(reward);
