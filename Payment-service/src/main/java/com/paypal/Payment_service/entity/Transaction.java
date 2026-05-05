@@ -13,12 +13,18 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Positive;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
-@Data
 @Table(name = "transaction")
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Data
 public class Transaction {
 
 
@@ -41,65 +47,6 @@ public class Transaction {
 
     @Column(nullable = false)
     private String status;
-
-    public Transaction() {
-    }
-
-    public Transaction(Long senderId, Long receiverId, Double amount, LocalDateTime timestamp, String status) {
-        this.senderId = senderId;
-        this.receiverId = receiverId;
-        this.amount = amount;
-        this.timestamp = timestamp;
-        this.status = status;
-    }
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getsenderId() {
-        return senderId;
-    }
-
-    public void setsenderId(Long senderId) {
-        this.senderId = senderId;
-    }
-
-    public Long getreceiverId() {
-        return receiverId;
-    }
-
-    public void setreceiverId(Long receiverId) {
-        this.receiverId = receiverId;
-    }
-
-    public Double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
 
     @PrePersist
     public void prePersist() {

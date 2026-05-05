@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import reactor.core.publisher.Mono;
 
+import java.util.Objects;
+
 @Configuration
 public class RateLimiterConfig {
 
@@ -18,7 +20,7 @@ public class RateLimiterConfig {
             }
             //fallback on Ip address
             return  Mono.just(
-                    exchange.getRequest().getRemoteAddress().getAddress().getHostAddress()
+                    Objects.requireNonNull(exchange.getRequest().getRemoteAddress()).getAddress().getHostAddress()
             );
         };
     }

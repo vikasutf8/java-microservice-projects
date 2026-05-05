@@ -1,6 +1,5 @@
 package com.paypal.Payment_service.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,10 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TransferRequest {
-
-    private String senderName;
-    private String receiverName;
-    private Double amount;
-
+public class ApiResponse<T> {
+    private int status;
+    private String message;
+    private T data;
 }

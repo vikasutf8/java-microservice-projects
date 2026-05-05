@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="Refactor: simplify DTOs and enhance API responses with ApiResponse wrapper">
+    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="Refactor: improve JWT handling and enhance security configurations">
+      <change afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/dto/ApiResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/paypal/user_service/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/paypal/user_service/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/paypal/user_service/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/paypal/user_service/security/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/paypal/user_service/utils/JwtRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/paypal/user_service/utils/JwtRequestFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/paypal/user_service/utils/JwtUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/paypal/user_service/utils/JwtUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Api-Gateway/src/main/java/com/paypal/Api_Gateway/Config/RateLimiterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Api-Gateway/src/main/java/com/paypal/Api_Gateway/Config/RateLimiterConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Payment-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/controller/TransactionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/dto/TransferRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/dto/TransferRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/entity/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/entity/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +84,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.PaymentServiceApplication.executor": "Run",
     "Spring Boot.UserServiceApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "paypal",
@@ -105,8 +110,11 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Payment_service/src/main/java/com/paypal/Payment_service" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.paypal.Payment_service.dto" />
+    </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.UserServiceApplication">
+  <component name="RunManager" selected="Spring Boot.PaymentServiceApplication">
     <configuration type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.paypal.Payment_service;" />
       <module name="Payment_service" />
@@ -146,6 +154,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PaymentServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="Payment_service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.paypal.Payment_service.PaymentServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.paypal.Payment_service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
       <module name="user-service" />
@@ -162,6 +184,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.PaymentServiceApplication" />
         <item itemvalue="Spring Boot.UserServiceApplication" />
         <item itemvalue="Application.PaymentServiceApplication" />
         <item itemvalue="Application.NotificationServiceApplication" />
@@ -192,7 +215,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777724470349</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Refactor: improve JWT handling and enhance security configurations">
+      <option name="closed" value="true" />
+      <created>1777729226518</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1777729226518</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,7 +242,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Refactor: simplify DTOs and enhance API responses with ApiResponse wrapper" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor: simplify DTOs and enhance API responses with ApiResponse wrapper" />
+    <MESSAGE value="Refactor: improve JWT handling and enhance security configurations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor: improve JWT handling and enhance security configurations" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -220,11 +252,6 @@
           <url>file://$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/config/AppConfig.java</url>
           <line>11</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java</url>
-          <line>377</line>
-          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/user-service/src/main/java/com/paypal/user_service/security/SecurityConfig.java</url>
@@ -325,21 +352,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java</url>
-          <line>61</line>
+          <line>63</line>
           <properties class="com.paypal.Payment_service.service.TransactionServiceImpl" method="createTransaction">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java</url>
-          <line>380</line>
-          <properties class="com.paypal.Payment_service.service.TransactionServiceImpl" method="getAllTransactions">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

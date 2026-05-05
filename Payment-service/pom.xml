@@ -43,6 +43,7 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+
         <!-- SECURITY -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -84,7 +85,6 @@
             <artifactId>spring-kafka</artifactId>
         </dependency>
 
-        <!-- LOMBOK (ONLY ONCE) -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
