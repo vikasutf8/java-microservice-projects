@@ -1,24 +1,50 @@
+version: '3.8'
+
 services:
-  zookeeper:
-    image: confluentinc/cp-zookeeper:7.4.1
-    ports:
-      - "2181:2181"
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_TICK_TIME: 2000
 
   kafka:
-    image: confluentinc/cp-kafka:7.4.1
+    image: confluentinc/cp-kafka:7.4.1   # Kafka with KRaft support
+    container_name: kafka
     ports:
-      - "9092:9092"
+      - "9092:9092"   # client access
+
     environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+
+      # 🔹 Unique node ID
+      KAFKA_NODE_ID: 1
+
+      # 🔹 Roles (no ZooKeeper needed)
+      KAFKA_PROCESS_ROLES: broker,controller
+
+      # 🔹 Listeners (client + controller)
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
+
+      # 🔹 Client connection address
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
-      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+
+      # 🔹 Protocol mapping
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+
+      # 🔹 Controller listener
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+
+      # 🔹 Controller quorum (single node)
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+
+      # 🔹 Storage
+      KAFKA_LOG_DIRS: /tmp/kraft-combined-logs
+
+      # 🔹 Cluster ID (generate once)
+      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+
+      # 🔹 Internal topic configs
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-    depends_on:
-      - zookeeper
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+
+      # 🔹 Default partitions
+      KAFKA_NUM_PARTITIONS: 3
+
 
   redis:
     image: redis:7.2
@@ -26,6 +52,7 @@ services:
     ports:
       - "6379:6379"
     command: ["redis-server", "--appendonly", "yes"]
+
 
   redisinsight:
     image: redis/redisinsight:latest
@@ -35,27 +62,28 @@ services:
     depends_on:
       - redis
 
-  mysql:
-    image: mysql:8.0  # Official MySQL image
-    container_name: paypal
-    restart: always  # Auto restart if container crashes
 
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: paypal-db
-      MYSQL_USER: paypal-db
-      MYSQL_PASSWORD: paypal-db
-    ports:
-      - "3306:3306"  # Host:Container
-
-    volumes:
-      - mysql_data:/var/lib/mysql  # Persist DB data
-
-    # Health check to ensure DB is ready
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      retries: 5
+#  mysql:
+#    image: mysql:8.0
+#    container_name: paypal
+#    restart: always
+#
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_DATABASE: paypal-db
+#      MYSQL_USER: paypal-db
+#      MYSQL_PASSWORD: paypal-db
+#
+#    ports:
+#      - "3306:3306"
+#
+#    volumes:
+#      - mysql_data:/var/lib/mysql
+#
+#    healthcheck:
+#      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+#      interval: 10s
+#      retries: 5
 
 
 volumes:

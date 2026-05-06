@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="Refactor: simplify HoldRequest and DebitResponse classes by removing inheritance and adding fields">
+    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Payment-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/dto/WalletDto/DebitRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/dto/WalletDto/DebitRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/dto/WalletDto/HoldRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/dto/WalletDto/HoldRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/config/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/kafka/KafkaEventProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/kafka/KafkaEventProducer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,44 +68,44 @@
     <option name="openDirectoriesWithSingleClick" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application..executor": "Run",
-    "Application.ApiGatewayApplication.executor": "Run",
-    "Application.NotificationServiceApplication.executor": "Run",
-    "Application.PaymentServiceApplication.executor": "Run",
-    "Maven.Payment_service [clean].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Spring Boot.ApiGatewayApplication.executor": "Run",
-    "Spring Boot.NotificationServiceApplication.executor": "Run",
-    "Spring Boot.PaymentServiceApplication.executor": "Run",
-    "Spring Boot.RewardServiceApplication.executor": "Run",
-    "Spring Boot.UserServiceApplication.executor": "Run",
-    "Spring Boot.WalletServiceApplication.executor": "Run",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "paypal",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/vikasarya/EndRevist/java-Project/paypal-clone",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application..executor&quot;: &quot;Run&quot;,
+    &quot;Application.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.NotificationServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PaymentServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Payment_service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.NotificationServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.PaymentServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.RewardServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.WalletServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;paypal&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/vikasarya/EndRevist/java-Project/paypal-clone&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "JAVA"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;JAVA&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Payment_service/src/main/java/com/paypal/Payment_service" />
@@ -307,7 +307,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777996521458</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Refactor: paymentService config">
+      <option name="closed" value="true" />
+      <created>1777997741447</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1777997741447</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -334,16 +342,12 @@
     <MESSAGE value="Refactor: correct spelling of transactionId in Reward and RewardConsumer classes" />
     <MESSAGE value="Refactor: update application.yml for improved H2 database configuration and add runtime dependency in pom.xml" />
     <MESSAGE value="Refactor: simplify HoldRequest and DebitResponse classes by removing inheritance and adding fields" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor: simplify HoldRequest and DebitResponse classes by removing inheritance and adding fields" />
+    <MESSAGE value="Refactor: paymentService config" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor: paymentService config" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/config/AppConfig.java</url>
-          <line>11</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/user-service/src/main/java/com/paypal/user_service/security/SecurityConfig.java</url>
           <line>38</line>
