@@ -1,25 +1,18 @@
 package com.paypal.user_service.dto;
 
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class CreateWalletClient {
 
     private Long userId;
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
     private String currency;
 
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
 }

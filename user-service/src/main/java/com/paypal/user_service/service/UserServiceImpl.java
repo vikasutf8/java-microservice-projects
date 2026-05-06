@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
-//    private final WalletClient walletClient;
+    private final WalletClient walletClient;
 
 //    public UserServiceImpl(UserRepository userRepository) {
 //        this.userRepository = userRepository;
@@ -35,7 +35,10 @@ public class UserServiceImpl implements UserService {
             CreateWalletClient client =new CreateWalletClient();
             client.setUserId(savedUser.getId());
             client.setCurrency("INR");
-//            walletClient.createWallet(client);
+
+
+            System.out.println("Creating wallet for user: " + savedUser.getEmail() + " with userId: " + savedUser.getId());
+            walletClient.createWallet(client);
 
         } catch (Exception e) {
 

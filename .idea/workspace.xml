@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="">
+    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="Refactor: update Kafka configuration in docker-compose and application.yml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/config/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/kafka/KafkaEventProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/kafka/KafkaEventProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Payment-service/src/main/java/com/paypal/Payment_service/service/TransactionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/paypal/user_service/Client/WalletClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/paypal/user_service/Client/WalletClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/paypal/user_service/dto/CreateWalletClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/paypal/user_service/dto/CreateWalletClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/paypal/user_service/dto/WalletResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/paypal/user_service/dto/WalletResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/paypal/user_service/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/paypal/user_service/service/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +129,7 @@
           <value>
             <map>
               <entry key="NotificationServiceApplication" value="STOPPED" />
-              <entry key="PaymentServiceApplication" value="STOPPED" />
+              <entry key="PaymentServiceApplication" value="FAILED" />
               <entry key="RewardServiceApplication" value="STOPPED" />
               <entry key="UserServiceApplication" value="STOPPED" />
               <entry key="WalletServiceApplication" value="STOPPED" />
@@ -315,7 +316,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777997741447</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Refactor: update Kafka configuration in docker-compose and application.yml">
+      <option name="closed" value="true" />
+      <created>1778078557132</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1778078557132</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -343,16 +352,12 @@
     <MESSAGE value="Refactor: update application.yml for improved H2 database configuration and add runtime dependency in pom.xml" />
     <MESSAGE value="Refactor: simplify HoldRequest and DebitResponse classes by removing inheritance and adding fields" />
     <MESSAGE value="Refactor: paymentService config" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor: paymentService config" />
+    <MESSAGE value="Refactor: update Kafka configuration in docker-compose and application.yml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor: update Kafka configuration in docker-compose and application.yml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/paypal/user_service/security/SecurityConfig.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/user-service/src/main/java/com/paypal/user_service/controller/AuthController.java</url>
           <line>79</line>
