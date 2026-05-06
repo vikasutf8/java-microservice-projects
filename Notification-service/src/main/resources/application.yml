@@ -7,16 +7,29 @@ spring:
     name: notification-service
 
 
+#  kafka:
+#    bootstrap-servers: localhost:9092
+#    consumer:
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+#      group-id: notification-service-group
+#      auto-offset-reset: earliest
+#    template:
+#      default-topic: payment-initiated
+
   kafka:
     bootstrap-servers: localhost:9092
+
     consumer:
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       group-id: notification-service-group
       auto-offset-reset: earliest
-    template:
-      default-topic: payment-initiated
 
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+
+      properties:
+        spring.json.trusted.packages: "*"   # or your package
+        spring.json.value.default.type: com.example.notificationservice.model.PaymentInitiatedEvent
 
   datasource:
     url: jdbc:h2:mem:testdb   # in-memory DB
