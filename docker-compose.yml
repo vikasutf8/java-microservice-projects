@@ -1,90 +1,179 @@
+#version: '3.8'
+#
+#services:
+#
+#  kafka:
+#    image: confluentinc/cp-kafka:7.4.1   # Kafka with KRaft support
+#    container_name: kafka
+#    ports:
+#      - "9092:9092"   # client access
+#
+#    environment:
+#
+#      # 🔹 Unique node ID
+#      KAFKA_NODE_ID: 1
+#
+#      # 🔹 Roles (no ZooKeeper needed)
+#      KAFKA_PROCESS_ROLES: broker,controller
+#
+#      # 🔹 Listeners (client + controller)
+#      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
+#
+#      # 🔹 Client connection address
+#      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+#
+#      # 🔹 Protocol mapping
+#      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+#
+#      # 🔹 Controller listener
+#      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+#
+#      # 🔹 Controller quorum (single node)
+#      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+#
+#      # 🔹 Storage
+#      KAFKA_LOG_DIRS: /tmp/kraft-combined-logs
+#
+#      # 🔹 Cluster ID (generate once)
+#      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+#
+#      # 🔹 Internal topic configs
+#      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+#      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+#      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+#
+#      # 🔹 Default partitions
+#      KAFKA_NUM_PARTITIONS: 3
+#
+#
+##  redis:
+##    image: redis:7.2
+##    container_name: redis
+##    ports:
+##      - "6379:6379"
+##    command: ["redis-server", "--appendonly", "yes"]
+##
+##
+##  redisinsight:
+##    image: redis/redisinsight:latest
+##    container_name: redisinsight
+##    ports:
+##      - "5540:5540"
+##    depends_on:
+##      - redis
+#
+#
+##  mysql:
+##    image: mysql:8.0
+##    container_name: paypal
+##    restart: always
+##
+##    environment:
+##      MYSQL_ROOT_PASSWORD: root
+##      MYSQL_DATABASE: paypal-db
+##      MYSQL_USER: paypal-db
+##      MYSQL_PASSWORD: paypal-db
+##
+##    ports:
+##      - "3306:3306"
+##
+##    volumes:
+##      - mysql_data:/var/lib/mysql
+##
+##    healthcheck:
+##      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+##      interval: 10s
+##      retries: 5
+#
+#
+##volumes:
+##  mysql_data:
+
+
+
 version: '3.8'
+
+# ──────────────────────────────────────────────────────────────────
+# 🔗 EXTERNAL NETWORK
+# Reuse netfiix's already-running MySQL, Redis, Redis Insight
+# containers instead of spinning up duplicates.
+#
+# How it works:
+#   netfiix stack creates a bridge network called "netfiix_app-network"
+#   This compose joins that same network → paypal containers can reach
+#   mysql / redis / redis-insight by their container names directly.
+# ──────────────────────────────────────────────────────────────────
+networks:
+  netfiix_app-network:
+    external: true      # Already created by the netfiix docker compose — don't recreate it
+
+volumes:
+  kafka-data-paypal:    # Separate Kafka volume — must NOT share with netfiix kafka
+
 
 services:
 
+  # ── Kafka (paypal's own — different CLUSTER_ID & data) ───────────
   kafka:
-    image: confluentinc/cp-kafka:7.4.1   # Kafka with KRaft support
-    container_name: kafka
+    image: confluentinc/cp-kafka:7.4.1          # Kafka with KRaft support
+    container_name: kafka-paypal                 # Renamed → avoids clash with netfiix's "kafka"
+    restart: unless-stopped
     ports:
-      - "9092:9092"   # client access
-
+      - "9094:9092"     # ← Host port changed to 9094 (netfiix already owns 9092)
+      # Inside the shared network, other containers reach this as kafka-paypal:9092
     environment:
-
-      # 🔹 Unique node ID
       KAFKA_NODE_ID: 1
-
-      # 🔹 Roles (no ZooKeeper needed)
-      KAFKA_PROCESS_ROLES: broker,controller
-
-      # 🔹 Listeners (client + controller)
+      KAFKA_PROCESS_ROLES: broker,controller               # Single node = broker + controller (KRaft)
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
-
-      # 🔹 Client connection address
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
-
-      # 🔹 Protocol mapping
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-paypal:9092   # Use new container name
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
-
-      # 🔹 Controller listener
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
-
-      # 🔹 Controller quorum (single node)
-      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
-
-      # 🔹 Storage
-      KAFKA_LOG_DIRS: /tmp/kraft-combined-logs
-
-      # 🔹 Cluster ID (generate once)
-      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
-
-      # 🔹 Internal topic configs
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-paypal:9093          # Must match container name
+      KAFKA_LOG_DIRS: /var/lib/kafka/data                          # Persistent path (not /tmp)
+      CLUSTER_ID: "MkU3OEVBNTcwNTJENDM2Qk"                        # Paypal's own unique cluster ID
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
-
-      # 🔹 Default partitions
-      KAFKA_NUM_PARTITIONS: 3
-
-
-  redis:
-    image: redis:7.2
-    container_name: redis
-    ports:
-      - "6379:6379"
-    command: ["redis-server", "--appendonly", "yes"]
-
-
-  redisinsight:
-    image: redis/redisinsight:latest
-    container_name: redisinsight
-    ports:
-      - "5540:5540"
-    depends_on:
-      - redis
+      KAFKA_NUM_PARTITIONS: 3                                       # Default partitions per topic
+    volumes:
+      - kafka-data-paypal:/var/lib/kafka/data   # Own volume — isolated from netfiix kafka data
+    networks:
+      - netfiix_app-network                     # Joined shared network → can talk to mysql, redis
+    healthcheck:
+      test: ["CMD", "kafka-topics", "--bootstrap-server", "localhost:9092", "--list"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
 
 
-#  mysql:
-#    image: mysql:8.0
-#    container_name: paypal
-#    restart: always
-#
-#    environment:
-#      MYSQL_ROOT_PASSWORD: root
-#      MYSQL_DATABASE: paypal-db
-#      MYSQL_USER: paypal-db
-#      MYSQL_PASSWORD: paypal-db
-#
-#    ports:
-#      - "3306:3306"
-#
-#    volumes:
-#      - mysql_data:/var/lib/mysql
-#
-#    healthcheck:
-#      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-#      interval: 10s
-#      retries: 5
+  # ── MySQL ─────────────────────────────────────────────────────────
+  # ✅ Already running in netfiix stack as container "mysql" on port 3306
+  # ✅ Reachable inside netfiix_app-network as hostname: mysql
+  #
+  # In your paypal app config, just point to:
+  #   host     : mysql
+  #   port     : 3306
+  #   user     : appuser     (or root)
+  #   password : apppassword (or rootpassword)
+  #   database : create a new one → see command below
+  #
+  # To create the paypal database inside the shared MySQL:
+  #   docker exec -it mysql mysql -u root -prootpassword -e "CREATE DATABASE paypaldb;"
+  # ─────────────────────────────────────────────────────────────────
 
 
-volumes:
-  mysql_data:
+  # ── Redis ─────────────────────────────────────────────────────────
+  # ✅ Already running in netfiix stack as container "redis" on port 6379
+  # ✅ Reachable inside netfiix_app-network as hostname: redis
+  #
+  # In your paypal app config, just point to:
+  #   host     : redis
+  #   port     : 6379
+  #   password : redispassword
+  # ─────────────────────────────────────────────────────────────────
+
+
+  # ── Redis Insight ─────────────────────────────────────────────────
+  # ✅ Already running in netfiix stack on http://localhost:5540
+  # ✅ You can manage paypal's Redis keys from the same GUI
+  # ─────────────────────────────────────────────────────────────────

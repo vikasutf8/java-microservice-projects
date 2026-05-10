@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="Refactor: update WalletClient to use FeignClient and improve CreateWalletClient and WalletResponse DTOs">
-      <change beforePath="$PROJECT_DIR$/Notification-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Notification-service/src/main/resources/application.yml" afterDir="false" />
+    <list default="true" id="c5ce9902-5b4f-4dc7-9af7-3a491283a974" name="Changes" comment="Refactor: update NotificationEventConsumer to improve transaction handling and logging">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +126,7 @@
           <value>
             <map>
               <entry key="NotificationServiceApplication" value="STOPPED" />
-              <entry key="PaymentServiceApplication" value="FAILED" />
+              <entry key="PaymentServiceApplication" value="STOPPED" />
               <entry key="RewardServiceApplication" value="STOPPED" />
               <entry key="UserServiceApplication" value="STOPPED" />
               <entry key="WalletServiceApplication" value="STOPPED" />
@@ -327,7 +329,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778079390013</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Refactor: update NotificationEventConsumer to improve transaction handling and logging">
+      <option name="closed" value="true" />
+      <created>1778079837286</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1778079837286</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -357,7 +367,8 @@
     <MESSAGE value="Refactor: paymentService config" />
     <MESSAGE value="Refactor: update Kafka configuration in docker-compose and application.yml" />
     <MESSAGE value="Refactor: update WalletClient to use FeignClient and improve CreateWalletClient and WalletResponse DTOs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor: update WalletClient to use FeignClient and improve CreateWalletClient and WalletResponse DTOs" />
+    <MESSAGE value="Refactor: update NotificationEventConsumer to improve transaction handling and logging" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor: update NotificationEventConsumer to improve transaction handling and logging" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

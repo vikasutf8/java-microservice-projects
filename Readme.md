@@ -54,3 +54,7 @@ CONTAINER ID   IMAGE                             COMMAND                  CREATE
 c8cc6bd700a7   confluentinc/cp-zookeeper:7.4.1   "/etc/confluent/dock…"   20 seconds ago   Up 19 seconds   2888/tcp, 0.0.0.0:2181->2181/tcp, 3888/tcp   paypal-clone-zookeeper-1
 
 ```
+
+
+## NOTE:
+the PayPal project is intentionally set up to use its own Kafka instance (kafka-paypal) to keep its data and configuration isolated from the Netflix project.
